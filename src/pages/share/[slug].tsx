@@ -17,9 +17,7 @@ import React from 'react';
 import SEO from '@/config/seo';
 import { NextSeo } from 'next-seo';
 import { useRouter } from 'next/router';
-import { FiInstagram } from 'react-icons/fi';
-import { CgStories } from 'react-icons/Cg';
-import { FaWhatsapp } from 'react-icons/Fa';
+import { FiInstagram, FiMessageCircle } from 'react-icons/fi';
 
 const content = {
   title: "Eu votei em",
@@ -53,9 +51,9 @@ export default function SharePage({ slug }: SharePageProps) {
         </Heading>
 
         <Grid templateColumns="repeat(3, 1fr)" w="full" maxW="sm">
-          <ShareButton title="Stories" icon={CgStories} onClick={() => router.push("/result")}/>
+          <ShareButton title="Stories" icon={FiInstagram} onClick={() => router.push("/result")}/>
           <ShareButton title="Feed" icon={FiInstagram} onClick={() => router.push("/result")}/>
-          <ShareButton title="Whatsapp" icon={FaWhatsapp} onClick={() => router.push("/result")}/>
+          <ShareButton title="Whatsapp" icon={FiMessageCircle} onClick={() => router.push("/result")}/>
         </Grid>
       </Container>
     </Layout>
