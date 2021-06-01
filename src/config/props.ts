@@ -34,7 +34,7 @@ export namespace Props {
       minH: 260,
       maxW: { base: "xs", sm: "sm", md: "md", lg: "full" },
       align: "center",
-      w: "sm",
+      w: "full",
       p: 8,
       mx: 8,
       alignContent: "center",

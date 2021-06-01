@@ -12,9 +12,10 @@ const containerProps: IconButtonProps = {
   color: "white",
   cursor: "pointer",
   colorScheme: "oilblue",
-  h: 24,
-  w: 24,
+  h: 20,
+  w: 20,
   p: 6,
+  m: 1
 }
 
 interface IProps {

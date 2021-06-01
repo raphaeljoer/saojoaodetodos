@@ -8,12 +8,12 @@ interface IProps { };
 
 export const Header = ({ }: IProps) => {
   return (
-    <Box pos="relative" h={216} w="full">
+    <Box pos="relative" h={272} w="full" maxW={863} justifySelf="center">
       <Image 
         src={ui.header.image.src}
         alt={ui.header.image.alt}
         layout="fill"
-        objectFit="contain"
+        objectFit="cover"
         objectPosition="top"
       />
     </Box>

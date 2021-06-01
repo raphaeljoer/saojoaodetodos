@@ -15,10 +15,10 @@ interface CardProps {
   id: string;
   name: string;
   variant: "vote" | "share";
-  children: ReactElement<typeof Button> | Array<ReactElement<typeof Button>>;
+  children: JSX.Element | JSX.Element[];
 };
 
-export const Card: React.FC<CardProps> = ({ id, name, variant, children, ...props }: CardProps) => {
+export const Card = ({ id, name, variant, children, ...props }: CardProps) => {
 
   const variantSwicher: VariantProps = {
     "vote": Props.Vote.card,

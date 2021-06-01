@@ -30,8 +30,8 @@ export const Footer = ({ hideLogo, ...props }: Footer) => {
         bgPosition="center"
         bgRepeat="repeatX"
       />
-      <Container zIndex={zIndex.low} pos="relative">
-        edede
+      <Container zIndex={zIndex.low} pos="relative" h={90} px={8}>
+          <Image src={ui.footer.sponsors.src} layout="fill" objectFit="contain"/>
       </Container>
     </Box>
   );

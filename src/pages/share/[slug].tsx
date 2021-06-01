@@ -42,7 +42,7 @@ export default function SharePage({ slug }: SharePageProps) {
         </Heading>
 
         <Card id={artist.id} name={artist.name} variant="share">
-          <Button onClick={() => router.push("/")}>Vota novamente</Button>
+          <Button onClick={() => router.push("/")}>Votar novamente</Button>
         </Card>
 
         <Heading textAlign="center" mt={12} fontSize="2xl" mb={8}>

@@ -8,8 +8,8 @@ export default class Document extends NextDocument {
     return (
       <Html lang="en">
         <Head>
-          {/* <link rel="icon" type="image/png" href={ui.favicon}/> */}
-          {/* <link rel="shortcut icon" href={ui.favicon}/> */}
+          <link rel="icon" type="image/png" href={ui.global.favicon}/>
+          <link rel="shortcut icon" href={ui.global.favicon}/>
         </Head>
         <body>
         <ColorModeScript initialColorMode={theme.config.initialColorMode}/>

@@ -65,6 +65,10 @@ export const ui = {
     },
   },
   footer: {
+    sponsors: {
+      src: `${path.components.footer}/sponsors.png`,
+      alt: "Patrocinadores"
+    },
     hope: {
       src: `${path.components.footer}/hope.png`,
       alt: "Corda"
