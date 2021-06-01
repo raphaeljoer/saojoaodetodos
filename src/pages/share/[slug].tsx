@@ -42,7 +42,6 @@ export default function SharePage({ slug }: SharePageProps) {
         </Heading>
 
         <Card id={artist.id} name={artist.name} variant="share">
-          <Button onClick={() => router.push("/result")}>Ver resultado parcial</Button>
           <Button onClick={() => router.push("/")}>Vota novamente</Button>
         </Card>
 

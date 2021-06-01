@@ -70,7 +70,7 @@ export const ui = {
       alt: "Corda"
     },
     background: {
-      src: `${path.components.footer}/background.png`,
+      src: `${path.components.footer}/background-doodle.jpg`,
       alt: "Tolha de mesa"
     }
   }
