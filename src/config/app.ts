@@ -1,8 +1,13 @@
 import { siteName } from './seo';
 
 const path = {
+  global: {
+    root: "/assets/ui",
+    fav: "/assets/ui/fav",
+    openGraph: "/assets/ui/opengraph"
+  },
   components: {
-    root: "/assets/ui/components/",
+    root: "/assets/ui/components",
     layout: "/assets/ui/components/Layout",
     header: "/assets/ui/components/Header",
     avatar: "/assets/ui/components/Avatar",
@@ -40,6 +45,9 @@ export const zIndex = {
 export const ui = {
   global: {
     favicon: "/assets/ui/fav/favicon.png",
+    openGraph: {
+      cover: `${path.global.openGraph}/cover.jpg`
+    },
     logo: {
       src: "/assets/img/logo/logo.svg",
       alt: { siteName },

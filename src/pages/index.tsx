@@ -20,6 +20,7 @@ import artists from "@/data/static/artists";
 import Recaptcha from "@/config/recaptcha";
 import { Props } from "@/config/props";
 import Card from "@/components/molecules/Card";
+import { ArtistProps } from "@/@types/artist";
 
 const gridProps: GridProps = {
   templateColumns: { base: "repeat(1, 1fr)", lg: "repeat(2 ,1fr)", xl: "repeat(3 ,1fr)" },
@@ -30,21 +31,19 @@ const gridProps: GridProps = {
   mb: 24,
 };
 
-const errorContent = {
-  vote: {
-    error: `Você ultrapassou o limite de voto ao mesmo tempo.
-      Por favor aguarde para votar novamente.`,
-  },
-  token: {
-    error: 'Precisamos validar o seu voto!',
-  },
-  recaptcha: {
-    error: 'Precisamos validar o seu voto!',
-  },
-};
+const error = {
+  vote: "Você ultrapassou o limite de voto ao mesmo tempo. Por favor aguarde para votar novamente.",
+  token: "Precisamos validar o seu voto!",
+  recaptcha: "Precisamos validar o seu voto!"
+}
+
+interface Vote {
+  artist: ArtistProps;
+  token: string;
+}
 
 export default function Home() {
-  const { siteKey, action } = Recaptcha.V3;
+  const { siteKey } = Recaptcha.V3;
   const {
     isAvailable,
     setIsAvailable,
@@ -64,7 +63,8 @@ export default function Home() {
   const router = useRouter();
   const toast = useToast()
 
-  const handleSuccess = (id: string, name: string) => {
+  const handleSuccess = ({ id, name }: ArtistProps) => {
+    toast.closeAll();
     toast({
       status: 'success',
       title: `Você votou em ${name}`,
@@ -83,51 +83,65 @@ export default function Home() {
     router.push(`/share/${id}`);
   };
 
-  const handleError = (error: string) => {
+  const handleError = (error: string, reason?: any) => {
+    toast.closeAll();
+
     toast({
       status: 'error',
       title: 'Ops! Algo deu errado',
       description: error,
       variant: 'left-accent',
       position: 'top-right',
-      isClosable: true,
+      isClosable: true
     });
 
     setIsVoting(false);
     setChoice('');
+
+    throw new Error(reason);
   };
 
-  const handleVote = async (id: string, name: string) => {
+  const handleVote = ({ artist, token }: Vote) => {
+    const { id } = artist;
+    axios({
+      method: 'POST',
+      url: '/api/vote',
+      timeout: 8000,
+      data: { id, token },
+    })
+      .then(() => handleSuccess(artist))
+      .catch(err => handleError(error.vote, err));
+  }
+
+  const validateVote = async (artist: ArtistProps) => {
+    const action = `vote_${artist.id.replaceAll('-', '_')}`;
+
+    if (!siteKey) {
+      handleError(error.recaptcha);
+      throw new Error("siteKey don't exist")
+    };
+
     toast({
       status: 'info',
       title: 'Aguarde!',
-      description: 'Estamos processando o seu voto.',
+      description: 'Estamos analisando o seu voto.',
       variant: 'left-accent',
       position: 'top-right',
       isClosable: true,
+      duration: 8000,
     });
-
-    if (!siteKey) throw new Error("siteKey don't exist");
 
     setIsVoting(true);
-    setChoice(id);
+    setChoice(artist.id);
 
-    const recaptcha = await load(siteKey);
-    if (!recaptcha) handleError(errorContent.recaptcha.error);
-
-    const token = await recaptcha.execute(action);
-    if (!token) handleError(errorContent.token.error);
-
-    const response = await axios({
-      method: 'POST',
-      url: '/api/vote',
-      timeout: 60000,
-      data: { id, token, action },
-    });
-
-    if (!response) handleError(errorContent.vote.error);
-
-    handleSuccess(id, name);
+    load(siteKey)
+      .then(recaptcha => {
+        recaptcha
+          .execute(action)
+          .then(token => handleVote({ artist, token }))
+          .catch(err => handleError(error.token, err));
+      })
+      .catch(err => handleError(error.recaptcha, err));
   };
 
   return (
@@ -135,10 +149,10 @@ export default function Home() {
       <NextSeo {...SEO.page.home} />
       <Container mt={32}>
         <Grid {...gridProps}>
-          {artists.map(({ id, name }) => (
-            <Card key={id} id={id} name={name} variant="vote">
+          {artists.map(a => (
+            <Card key={a.id} id={a.id} name={a.name} variant="vote">
               <Button
-                onClick={() => handleVote(id, name)}
+                onClick={() => validateVote(a)}
                 isDisabled={!isAvailable}
                 isLoading={isVoting}
                 loadingText="Votando"

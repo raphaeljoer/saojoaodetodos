@@ -21,13 +21,13 @@ const containerProps: IconButtonProps = {
 interface IProps {
   title: string;
   icon: IconType;
-  onClick: () => void;
+  onClick?: () => void;
 };
 
 export const ShareButton = ({ title, icon, onClick,...props }: IProps) => {
   return (
     <Flex flexDir="column" align="center">
-      <IconButton as={icon} onClick={() => {}} {...containerProps} />
+      <IconButton as={icon} onClick={onClick} {...containerProps} />
       <Text fontSize="lg" fontWeight="bold" mt={4}>
         {title}
       </Text>

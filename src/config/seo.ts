@@ -1,10 +1,9 @@
-
 export const siteName = "Talento São João de Todos | SuaMúsica";
 export const description = "Entregando confiança, credibilidade e inovação por todo nordeste";
 export const canonical = "https://saojoaodetodos.com.br";
 export const locale = "pt-br";
 export const type = "website";
-export const defaultImage = "/assets/img/opengraph/cover-opengraph.jpg";
+export const defaultImage = "/assets/ui/opengraph/cover.jpg";
 
 const openGraph = {
   title: siteName,
@@ -41,7 +40,8 @@ export const SEO = {
   },
   page: {
     home: { ...pageConfig },
-    share: { ...pageConfig, title: `Share | ${siteName}`},
+    share: { ...pageConfig, title: `Compartilhe | ${siteName}`},
+    stories: { ...pageConfig, title: `Compartilhe nos stories | ${siteName}`},
   },
 }
 

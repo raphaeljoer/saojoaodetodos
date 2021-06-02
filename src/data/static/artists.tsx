@@ -10,7 +10,7 @@ export const artists: ArtistProps[] = [
     name: 'Zé Vaqueiro',
   },
   { 
-    id: "rica-faca",
+    id: "risca-faca",
     name: 'Risca Faca',
   },
 ];

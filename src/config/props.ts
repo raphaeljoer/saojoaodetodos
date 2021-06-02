@@ -53,5 +53,14 @@ export namespace Props {
       fontWeight: "700",
       bgColor: "#e09133"
     };
+
+    export const share: ButtonProps = {
+      w: "full", 
+      h: 16, 
+      borderRadius: "xl", 
+      colorScheme: "orange",
+      cursor: "pointer",
+    }
+
   }
 }
