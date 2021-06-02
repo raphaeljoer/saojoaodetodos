@@ -15,7 +15,6 @@ interface CollectionProps {
   id: string;
   votedAt: Date,
   score: number;
-  ip: string | undefined;
 }
 
 let cachedDb: Db;
@@ -39,8 +38,6 @@ const connectToDataBase = async (uri: string) => {
 
 export default async (request: VercelRequest, response: VercelResponse) => {
   if (!DataBase.Mongo.uri) throw new Error("MongoDB uri don't exist");
-  
-  const ip = request.socket.remoteAddress;
 
   const { id, token }: Vote = request.body;
   const { apiUrl, secretKey, minimumScore } = Recaptcha.V3;
@@ -68,8 +65,7 @@ export default async (request: VercelRequest, response: VercelResponse) => {
     .insertOne({
       id,
       votedAt: new Date(),
-      score,
-      ip
+      score
     })
     .then(_data => {
       return response.status(200).json({ success: true });

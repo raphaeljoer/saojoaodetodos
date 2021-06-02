@@ -20,8 +20,8 @@ interface CardProps {
 export const Card = ({ id, name, variant, children, ...props }: CardProps) => {
 
   const variantSwicher: VariantProps = {
-    "vote": Props.Vote.card,
-    "share": Props.Share.card
+    "vote": Props.Card.vote,
+    "share": Props.Card.share
   }
 
   return (
