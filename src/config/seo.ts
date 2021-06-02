@@ -1,5 +1,5 @@
 export const siteName = "Talento São João de Todos | SuaMúsica";
-export const description = "Entregando confiança, credibilidade e inovação por todo nordeste";
+export const description = "Os fãs poderão votar, torcer e escolher o seu participante favorito em uma  votação que vai do dia 04 de junho até o dia 18, quando vamos anunciar o grande vencedor durante a nossa live.";
 export const canonical = "https://saojoaodetodos.com.br";
 export const locale = "pt-br";
 export const type = "website";
