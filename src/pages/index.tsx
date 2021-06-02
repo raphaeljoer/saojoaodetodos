@@ -106,7 +106,7 @@ export default function Home() {
     axios({
       method: 'POST',
       url: '/api/vote',
-      timeout: 8000,
+      timeout: 10000,
       data: { id, token },
     })
       .then(() => handleSuccess(artist))
@@ -128,7 +128,7 @@ export default function Home() {
       variant: 'left-accent',
       position: 'top-right',
       isClosable: true,
-      duration: 8000,
+      duration: 10000,
     });
 
     setIsVoting(true);

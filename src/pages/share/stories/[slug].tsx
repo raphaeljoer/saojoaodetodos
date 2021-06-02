@@ -35,7 +35,7 @@ export default function StoriesPage({ slug }: StoriesPageProps) {
   }
 
   const path = {
-    image: `/assets/share/stories/${slug}.jpg`,
+    image: `/assets/artists/share/stories/${slug}.jpg`,
     back: `/share/${slug}`
   }
 

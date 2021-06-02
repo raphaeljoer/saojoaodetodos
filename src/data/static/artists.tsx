@@ -2,16 +2,28 @@ import { ArtistProps } from "@/@types/artist";
 
 export const artists: ArtistProps[] = [
   { 
-    id: "tarcisio-do-acordeon",
-    name: 'Tarcisio do Acordeon',
+    id: "cris-olliver-e-rodrigo-paiva",
+    name: 'Cris Olliver e Rodrigo Paiva',
   },
   { 
-    id: "ze-vaqueiro",
-    name: 'Zé Vaqueiro',
+    id: "fernando-amorim",
+    name: 'Fernando Amorim',
   },
   { 
-    id: "risca-faca",
-    name: 'Risca Faca',
+    id: "maisa-lima",
+    name: 'Maisa Lima',
+  },
+  { 
+    id: "junior-paiva",
+    name: 'Junior Paiva',
+  },
+  { 
+    id: "pedro-vilar",
+    name: 'Pedro Vilar',
+  },
+  { 
+    id: "arthur-lima",
+    name: 'Arthur Lima',
   },
 ];
 

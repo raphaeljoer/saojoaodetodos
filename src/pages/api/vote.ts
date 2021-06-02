@@ -45,7 +45,7 @@ export default async (request: VercelRequest, response: VercelResponse) => {
 
   if (!token) response.status(500).json({ message: 'You must have a valid token' });
 
-  const { data }: AxiosResponse<RecaptchaProps.Response> = await axios({ method: 'POST', url, timeout: 8000 });
+  const { data }: AxiosResponse<RecaptchaProps.Response> = await axios({ method: 'POST', url, timeout: 10000 });
   const { score } = data;
 
   if (!score) {

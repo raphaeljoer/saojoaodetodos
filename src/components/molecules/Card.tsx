@@ -1,9 +1,8 @@
 import { ui } from "@/config/app";
 import { Props } from "@/config/props";
-import { Flex, FlexProps, ButtonProps } from "@chakra-ui/react";
+import { Flex, FlexProps, ButtonProps, Box } from "@chakra-ui/react";
 import React, { cloneElement, Children, ReactElement } from "react";
 import Avatar from "../atoms/Avatar";
-import Button from "../atoms/buttons/Button";
 import Heading from "../atoms/Heading";
 
 interface VariantProps {
@@ -27,10 +26,12 @@ export const Card = ({ id, name, variant, children, ...props }: CardProps) => {
 
   return (
     <Flex {...variantSwicher[variant]} {...props}>
-      <Avatar image={ui.avatar.example.src} mb={8} />
-      <Heading color="white" mb={8}>
-        {name}
-      </Heading>
+      <Avatar image={`/assets/artist/avatar/${id}.jpg`} mb={8} />
+      <Flex h={24} align="center" justifyItems="center" mb={4}>
+        <Heading color="white" textAlign="center">
+          {name}
+        </Heading>
+      </Flex>
       {Children.map(children, (child, idx) => (
         cloneElement(child, {
           mt: idx > 0 && 4,

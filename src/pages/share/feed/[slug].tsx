@@ -35,7 +35,7 @@ export default function FeedPage({ slug }: FeedPageProps) {
   }
 
   const path = {
-    image: `/assets/share/feed/${slug}.jpg`,
+    image: `/assets/artists/share/feed/${slug}.jpg`,
     back: `/share/${slug}`
   }
 
