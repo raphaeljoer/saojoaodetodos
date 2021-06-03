@@ -1,16 +1,13 @@
 //chakra-ui
-import { Box, ButtonProps, Flex, FlexProps, Grid, GridProps, useToast } from "@chakra-ui/react";
+import { Grid, GridProps, useToast } from "@chakra-ui/react";
 //next resources
 import { useRouter } from "next/router";
 //core components
 import Layout from "@/components/molecules/Layout";
-import Heading from "@/components/atoms/Heading";
 import Button from "@/components/atoms/buttons/Button";
 import Container from "@/components/molecules/Container";
-import Avatar from "@/components/atoms/Avatar";
 //resources
 import React, { useContext } from "react";
-import { ui } from "@/config/app";
 import { load } from 'recaptcha-v3';
 import { NextSeo } from "next-seo";
 import { VoteContext } from '@/context/Vote';
@@ -18,7 +15,6 @@ import SEO from "@/config/seo";
 import axios from 'axios';
 import artists from "@/data/static/artists";
 import Recaptcha from "@/config/recaptcha";
-import { Props } from "@/config/props";
 import Card from "@/components/molecules/Card";
 import { ArtistProps } from "@/@types/artist";
 
