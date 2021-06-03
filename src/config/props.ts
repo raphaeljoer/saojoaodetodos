@@ -83,14 +83,14 @@ export namespace Props {
       borderRadius: "xl",
       fontSize: 20,
       fontWeight: "700",
-      colorScheme: "orange",
+      colorScheme: "red",
     };
 
     export const share: ButtonProps = {
       w: "full",
       h: 16,
       borderRadius: "xl",
-      colorScheme: "orange",
+      colorScheme: "red",
       cursor: "pointer",
     }
   }
