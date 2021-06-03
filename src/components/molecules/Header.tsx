@@ -15,6 +15,7 @@ export const Header = ({ }: IProps) => {
         layout="fill"
         objectFit="cover"
         objectPosition="top"
+        priority
       />
     </Box>
   )

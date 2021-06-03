@@ -21,6 +21,7 @@ const getBrands = (brands: BrandProps[]) => (
         src={`/assets/brand/${b.id}.png`}
         width={b.width}
         height={b.height}
+        priority
       />
     </Box>
   ))
