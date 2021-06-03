@@ -1,4 +1,4 @@
-import { Grid } from '@chakra-ui/react';
+import { Grid, Stack } from '@chakra-ui/react';
 //next resources
 import { GetStaticPaths, GetStaticProps } from 'next';
 //types
@@ -19,6 +19,7 @@ import { NextSeo } from 'next-seo';
 import { useRouter } from 'next/router';
 import { FiInstagram, FiMessageCircle } from 'react-icons/fi';
 import Link from '@/components/atoms/Link';
+import { Props } from '@/config/props';
 
 
 interface SharePageProps {
@@ -46,7 +47,14 @@ export default function SharePage({ slug }: SharePageProps) {
         </Heading>
 
         <Card id={artist.id} name={artist.name} variant="share">
-          <Button onClick={() => router.push("/")}>Votar novamente</Button>
+          <Stack spacing={4} w="full">
+            <Link href="/result">
+              <Button {...Props.Button.card}>Ver resultado parcial</Button>
+            </Link>
+            <Link href="/">
+              <Button {...Props.Button.card}>Votar novamente</Button>
+            </Link>
+          </Stack>
         </Card>
 
         <Heading textAlign="center" mt={12} fontSize="2xl" mb={8}>

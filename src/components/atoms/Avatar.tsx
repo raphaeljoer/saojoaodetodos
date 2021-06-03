@@ -10,12 +10,11 @@ interface IProps extends BoxProps {
 export const Avatar = ({image, ...props}: IProps) => {
   return (
     <Box
+      w={24}
+      h={24}
       pos="relative"
-      h={48}
-      w={48}
       borderRadius="full"
       overflow="hidden"
-      mt={-32}
       border="6px solid white"
       {...props}
     >

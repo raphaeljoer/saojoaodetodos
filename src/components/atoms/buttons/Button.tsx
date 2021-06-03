@@ -5,7 +5,7 @@ export interface IButtonProps extends ButtonProps {
   children: any;
 }
 
-export const Button: React.FC<IButtonProps> = ({ children, ...props}: IButtonProps) => {
+export const Button = ({ children, ...props}: IButtonProps) => {
   return (
     <CkButton {...props}>
       {children}

@@ -82,9 +82,8 @@ export namespace Props {
       h: 14,
       borderRadius: "xl",
       fontSize: 20,
-      color: "#333",
       fontWeight: "700",
-      bgColor: "#e09133"
+      colorScheme: "orange",
     };
 
     export const share: ButtonProps = {

@@ -26,18 +26,14 @@ export const Card = ({ id, name, variant, children, ...props }: CardProps) => {
 
   return (
     <Flex {...variantSwicher[variant]} {...props}>
-      <Avatar image={`/assets/artist/avatar/${id}.jpg`} mb={8} />
+      <Avatar mt={-32} h={48} w={48} image={`/assets/artist/avatar/${id}.jpg`} mb={8} />
       <Flex h={24} align="center" justifyItems="center" mb={4}>
-        <Heading color="white" textAlign="center">
+        <Heading color="white" textAlign="center" fontSize="4xl" px={8} my={4}>
           {name}
         </Heading>
       </Flex>
       {Children.map(children, (child, idx) => (
-        cloneElement(child, {
-          mt: idx > 0 && 4,
-          ...Props.Button.card,
-          ...child.props,
-        })
+        cloneElement(child, { ...child.props })
       ))}
     </Flex>
   )

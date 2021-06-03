@@ -16,20 +16,18 @@ export interface Footer {
 
 const getBrands = (brands: BrandProps[]) => (
   brands.map(b => (
-    <Box key={b.id} pos="relative" mr={6} alignSelf="center">
+    <Flex key={b.id} pos="relative" mr={6} h={86} align="center">
       <Image
         src={`/assets/brand/${b.id}.png`}
         width={b.width}
         height={b.height}
         priority
       />
-    </Box>
+    </Flex>
   ))
 );
 
 export const Footer = ({ hideLogo, ...props }: Footer) => {
-
-  const isDesktop = useBreakpointValue({ base: false, lg: true });
 
   return (
     <Box

@@ -1,5 +1,5 @@
 //chakra-ui
-import { Grid, GridProps, useToast } from "@chakra-ui/react";
+import { Grid, GridProps, useBreakpointValue, useToast } from "@chakra-ui/react";
 //next resources
 import { useRouter } from "next/router";
 //core components
@@ -17,6 +17,7 @@ import artists from "@/data/static/artists";
 import Recaptcha from "@/config/recaptcha";
 import Card from "@/components/molecules/Card";
 import { ArtistProps } from "@/@types/artist";
+import { Props } from "@/config/props";
 
 const gridProps: GridProps = {
   templateColumns: { base: "repeat(1, 1fr)", lg: "repeat(2 ,1fr)", xl: "repeat(3 ,1fr)" },
@@ -38,7 +39,9 @@ interface Vote {
   token: string;
 }
 
-export default function Home() {
+export default function HomePage() {
+  const isDesktop = useBreakpointValue({base: false, lg: true})
+  const toastPosition = isDesktop ? 'top-right' : 'top';
   const { siteKey } = Recaptcha.V3;
   const {
     isAvailable,
@@ -46,8 +49,7 @@ export default function Home() {
 
     isVoting,
     setIsVoting,
-
-    choice,
+    
     setChoice,
 
     handleAvailability,
@@ -66,7 +68,7 @@ export default function Home() {
       title: `Você votou em ${name}`,
       description: 'Você pode votar quantas vezes quiser!',
       variant: 'left-accent',
-      position: 'top-right',
+      position: toastPosition,
       isClosable: true,
     });
 
@@ -87,7 +89,7 @@ export default function Home() {
       title: 'Ops! Algo deu errado',
       description: error,
       variant: 'left-accent',
-      position: 'top-right',
+      position: toastPosition,
       isClosable: true
     });
 
@@ -122,7 +124,7 @@ export default function Home() {
       title: 'Aguarde!',
       description: 'Estamos analisando o seu voto.',
       variant: 'left-accent',
-      position: 'top-right',
+      position: toastPosition,
       isClosable: true,
       duration: 10000,
     });
@@ -146,12 +148,13 @@ export default function Home() {
       <Container mt={32}>
         <Grid {...gridProps}>
           {artists.map(a => (
-            <Card key={a.id} id={a.id} name={a.name} variant="vote">
+            <Card key={a.id} {...a} variant="vote">
               <Button
                 onClick={() => validateVote(a)}
                 isDisabled={!isAvailable}
                 isLoading={isVoting}
                 loadingText="Votando"
+                {...Props.Button.card}
               >
                 {!isVoting && !isAvailable && <CountDown />}
                 {!isVoting && isAvailable && 'Votar'}
