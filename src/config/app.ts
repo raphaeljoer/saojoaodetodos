@@ -8,10 +8,10 @@ const path = {
   },
   components: {
     root: "/assets/ui/components",
-    layout: "/assets/ui/components/Layout",
-    header: "/assets/ui/components/Header",
-    avatar: "/assets/ui/components/Avatar",
-    footer: "/assets/ui/components/Footer",
+    layout: "/assets/ui/components/layout",
+    header: "/assets/ui/components/header",
+    avatar: "/assets/ui/components/avatar",
+    footer: "/assets/ui/components/footer",
   }
 }
 

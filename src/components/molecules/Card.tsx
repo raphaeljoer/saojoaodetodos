@@ -28,7 +28,7 @@ export const Card = ({ id, name, variant, children, ...props }: CardProps) => {
     <Flex {...variantSwicher[variant]} {...props}>
       <Avatar mt={-32} h={48} w={48} image={`/assets/artist/avatar/${id}.jpg`} mb={8} />
       <Flex h={24} align="center" justifyItems="center" mb={4}>
-        <Heading color="white" textAlign="center" fontSize="4xl" px={8} my={4}>
+        <Heading color="white" textAlign="center" fontSize="4xl" px={{base: 2, lg: 8}} my={4}>
           {name}
         </Heading>
       </Flex>
