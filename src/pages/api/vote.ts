@@ -23,15 +23,15 @@ interface RecaptchaResponse {
 }
 
 export default async (request: VercelRequest, response: VercelResponse) => {
-  if (!Database.Mongo.uri) throw new Error("MongoDB uri don't exist");
-  const { apiUrl, secretKey, minimumScore } = Recaptcha.V3;
   const { id, token }: Vote = request.body;
 
-  const ip = request.headers['x-forwarded-for'];
-
-  const url = `${apiUrl}?secret=${secretKey}&response=${token}`;
-
   if (!token) response.status(500).json({ message: 'You must have a valid token' });
+  if (!id) response.status(500).json({ message: 'You must have a valid id' });
+  
+  const { getUrl, minimumScore } = Recaptcha.V3;
+
+  const ip = request.headers['x-forwarded-for'];
+  const url = getUrl(token);
 
   const { recaptchaReponse, err }: RecaptchaResponse = await
     axios({ method: 'POST', url, timeout: 10000 })
