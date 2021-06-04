@@ -4,13 +4,15 @@ import Text, { TextProps } from "@/components/atoms/Text";
 
 interface PercentageProps extends TextProps {
   value: number;
-  limit?: number;
 };
 
-export const Percentage = ({ value, limit = 5, ...props }: PercentageProps) => (
-  <Text color="white" fontWeight="700" {...props}>
-    {`${String(value).slice(0, limit)}%`}
-  </Text>
-);
+export const Percentage = ({ value, ...props }: PercentageProps) => {
+  const limit = (value < 10) ? 4 : 5;
+  return (
+    <Text color="white" fontWeight="700" {...props}>
+      {`${String(value).slice(0, limit)}%`}
+    </Text>
+  );
+};
 
 export default Percentage;

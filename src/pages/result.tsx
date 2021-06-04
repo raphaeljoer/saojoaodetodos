@@ -29,7 +29,6 @@ interface ResultPageProps {
 
 export default function ResultPage({ results }: ResultPageProps) {
   const router = useRouter();
-  const mostVoted = results[0].votes;
 
   return (
     <Layout>
@@ -40,7 +39,7 @@ export default function ResultPage({ results }: ResultPageProps) {
           <Heading fontSize="4xl" mb={8}>Resultado Parcial</Heading>
 
           <Stack spacing={4}>
-            {results.map(r => <CardResult key={r.id} {...r} mostVoted={mostVoted} />)}
+            {results.map((r, idx) => <CardResult key={r.id} position={idx + 1} {...r} />)}
           </Stack>
 
           <Button
