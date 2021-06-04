@@ -11,7 +11,7 @@ const containerProps: IconButtonProps = {
   justifyContent: "center",
   color: "white",
   cursor: "pointer",
-  colorScheme: "oilblue",
+  colorScheme: "red",
   h: 20,
   w: 20,
   p: 6,

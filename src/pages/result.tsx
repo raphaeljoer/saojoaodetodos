@@ -24,11 +24,13 @@ import { useRouter } from 'next/router'
 
 interface ResultPageProps {
   totalAllVotes: number;
-  result: ResultProps[];
+  results: ResultProps[];
 }
 
-export default function ResultPage({ result }: ResultPageProps) {
+export default function ResultPage({ results }: ResultPageProps) {
   const router = useRouter();
+  const mostVoted = results[0].votes;
+
   return (
     <Layout>
       <NextSeo {...SEO.page.home} />
@@ -38,10 +40,15 @@ export default function ResultPage({ result }: ResultPageProps) {
           <Heading fontSize="4xl" mb={8}>Resultado Parcial</Heading>
 
           <Stack spacing={4}>
-            {result.map(r => <CardResult key={r.id} {...r} />)}
+            {results.map(r => <CardResult key={r.id} {...r} mostVoted={mostVoted} />)}
           </Stack>
 
-          <Button onClick={() => router.back()} {...Props.Button.share} mt={8} w={{ base: "xs", sm: "sm", md: "md" }}>
+          <Button
+            onClick={() => router.back()}
+            {...Props.Button.share}
+            w={{ base: "xs", sm: "sm", md: "md" }}
+            mt={8}
+          >
             VOLTAR
           </Button>
 
@@ -53,33 +60,28 @@ export default function ResultPage({ result }: ResultPageProps) {
 
 export const getStaticProps: GetStaticProps = async () => {
   const db = await Database.Mongo.connectToDataBase(Database.Mongo.uri);
-  const votes = db.collection('votes');
+  const collection = db.collection('votes');
+  const totalVotes = await collection.estimatedDocumentCount();
 
-  const getCountVotes = (artist: ArtistProps) =>
-    votes.countDocuments({ id: artist.id });
+  const ordenate = (results: any) => results.sort((a: any, b: any) => b.votes - a.votes);
+  
+  const mesureProgress = (results: ResultProps[]) =>
+    results.map(r => ({ ...r, progress: (r.votes * 100) / results[0].votes }));
 
-  const totalAllVotes = await Promise
-    .all(artists.map(getCountVotes))
-    .then(response => response.reduce(Utils.Math.Reduce.sum));
-
-  const getPercentualVotes = async (artist: ArtistProps) =>
-    (await getCountVotes(artist) / totalAllVotes) * 100;
-
-  const resultList = await Promise.all(
-    artists.map(async (artist: ArtistProps): Promise<ResultProps> => ({
-      id: artist.id,
-      artist: artist.name,
-      votes: await getCountVotes(artist),
-      percentual: await getPercentualVotes(artist),
-    })),
-  );
-
-  const result = resultList.sort((a, b) => b.percentual - a.percentual);
+  const results = await
+    Promise.all(
+      artists.map(async ({ id, name }: ArtistProps) => {
+        const votes = await collection.countDocuments({ id })
+        const percentage = (votes / totalVotes) * 100
+        return ({ id, name, votes, percentage });
+      }))
+      .then(ordenate)
+      .then(mesureProgress);
 
   return {
     props: {
-      totalAllVotes,
-      result,
+      totalVotes,
+      results,
     },
     revalidate: next.revalidate.fiveMinutes,
   };

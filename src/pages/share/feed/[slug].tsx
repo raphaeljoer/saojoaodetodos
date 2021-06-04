@@ -52,7 +52,7 @@ export default function FeedPage({ slug }: FeedPageProps) {
           {content.subTitle}
         </Text>
 
-        <Box borderRadius="2xl" pos="relative" h={400} overflow="hidden" border="6px solid orange">
+        <Box borderRadius="2xl" pos="relative" h={400} overflow="hidden" border="6px solid red">
           <Image src={path.image} layout="fill" objectFit="cover" />
         </Box>
 

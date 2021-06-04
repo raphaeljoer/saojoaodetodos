@@ -1,6 +1,7 @@
 export interface ResultProps {
   id: string;
-  artist: string;
+  name: string;
   votes: number;
-  percentual: number;
+  percentage: number;
+  progress: number;
 };
