@@ -46,6 +46,10 @@ export default async (request: VercelRequest, response: VercelResponse) => {
     return response.status(500).json({ message: 'Google Api error' });
   }
 
+  if (!recaptchaReponse.data.success) {
+    return response.status(500).json({ message: 'Google Api error', info: recaptchaReponse.data });
+  }
+
   const { score } = recaptchaReponse.data;
 
   if (score < minimumScore) {
