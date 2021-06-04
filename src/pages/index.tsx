@@ -25,7 +25,6 @@ const gridProps: GridProps = {
   gridRowGap: 32,
   justifyItems: "center",
   mt: 8,
-  mb: 24,
 };
 
 const error = {
@@ -145,7 +144,7 @@ export default function HomePage() {
   return (
     <Layout>
       <NextSeo {...SEO.page.home} />
-      <Container mt={32}>
+      <Container my={16}>
         <Grid {...gridProps}>
           {artists.map(a => (
             <Card key={a.id} {...a} variant="vote">

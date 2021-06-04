@@ -56,10 +56,14 @@ export const ui = {
     },
   },
   header: {
-    image: {
-      src: `${path.components.header}/image.png`,
+    talento: {
+      src: `${path.components.header}/talento.webp`,
       alt: "São João de Todos"
-    }
+    },
+    logos: {
+      src: `${path.components.header}/logos.webp`,
+      alt: "Mídia"
+    },
   },
   avatar: {
     example: {
