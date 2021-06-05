@@ -51,7 +51,7 @@ export default function StoriesPage({ slug }: StoriesPageProps) {
           {content.subTitle}
         </Text>
 
-        <Box borderRadius="2xl" pos="relative" h={640} overflow="hidden" border="6px solid red">
+        <Box borderRadius="2xl" pos="relative" h={560} overflow="hidden" border="6px solid red">
           <Image src={path.image} layout="fill" objectFit="cover" />
         </Box>
 

@@ -47,7 +47,7 @@ export const Footer = ({ hideLogo, ...props }: Footer) => {
       <Container zIndex={zIndex.low} pos="relative" px={8}>
         <Flex justifyContent="space-between" flexDir={{ base: "column", lg: "row" }}>
           <Box mb={12}>
-            <Heading fontSize="lg" color="white" mb={8} textAlign="left">
+            <Heading fontSize="2xl" color="white" mb={8} textAlign="left">
               PATROCÍNIO
             </Heading>
             <SimpleGrid columns={{ base: 2, md: 4 }}>
@@ -56,7 +56,7 @@ export const Footer = ({ hideLogo, ...props }: Footer) => {
           </Box>
 
           <Box mb={12} ml={{ base: 0, lg: 12 }}>
-            <Heading fontSize="lg" color="white" mb={8} textAlign="left">
+            <Heading fontSize="2xl" color="white" mb={8} textAlign="left">
               APOIO
             </Heading>
             <SimpleGrid columns={{ base: 4, lg: 2 }}>

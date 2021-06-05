@@ -34,7 +34,7 @@ export default function FeedPage({ slug }: FeedPageProps) {
   }
 
   const path = {
-    image: `/assets/artists/share/feed/${slug}.jpg`,
+    image: `/assets/artist/share/feed/${slug}.jpg`,
     back: `/share/${slug}`
   }
 
@@ -51,7 +51,7 @@ export default function FeedPage({ slug }: FeedPageProps) {
           {content.subTitle}
         </Text>
 
-        <Box borderRadius="2xl" pos="relative" h={400} overflow="hidden" border="6px solid red">
+        <Box borderRadius="2xl" pos="relative" h={480} overflow="hidden" border="6px solid red">
           <Image src={path.image} layout="fill" objectFit="cover" />
         </Box>
 

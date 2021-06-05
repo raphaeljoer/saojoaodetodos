@@ -1,4 +1,4 @@
 export const fonts = {
-  heading: 'Mukta, system-ui, sans-serif',
-  body: 'Mukta, system-ui, sans-serif',
+  heading: 'Odibee Sans, cursive',
+  body: 'Roboto, system-ui, sans-serif',
 };

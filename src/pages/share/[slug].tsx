@@ -19,7 +19,6 @@ import { NextSeo } from 'next-seo';
 import { useRouter } from 'next/router';
 import { FiInstagram, FiMessageCircle } from 'react-icons/fi';
 import Link from '@/components/atoms/Link';
-import { Props } from '@/config/props';
 
 
 interface SharePageProps {
@@ -35,7 +34,7 @@ export default function SharePage({ slug }: SharePageProps) {
   const content = {
     title: "Eu votei em",
     share: "Compartilhe",
-    whatsapp: `whatsapp://send?text=Ajude você também ${artist.name} a ser escolhido como o Talento São João de Todos 2021 votando no site https://saojoaodetodos.com.br`
+    whatsapp: `whatsapp://send?text=Ajude você também ${artist.name} a ser escolhida(o) como o Talento São João de Todos 2021 votando no site https://talento.saojoaodetodos.com.br`
   }
 
   return (
