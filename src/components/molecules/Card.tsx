@@ -15,7 +15,7 @@ interface CardProps {
   id: string;
   name: string;
   variant: "vote" | "share";
-  isAvailable: boolean;
+  isAvailable?: boolean;
   children: JSX.Element | JSX.Element[];
 };
 
