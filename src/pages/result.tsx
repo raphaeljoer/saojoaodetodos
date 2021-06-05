@@ -11,12 +11,9 @@ import { NextSeo } from "next-seo";
 import { GetStaticProps } from "next";
 import { useRouter } from 'next/router'
 import { next } from "@/config/app";
-import Database from "@/config/database";
-//data
-import artists from "@/data/static/artists";
 //types
-import { ArtistProps } from "@/@types/artist";
 import { ResultProps } from "@/@types/result";
+import { getResults } from "@/data/request/results";
 
 interface ResultPageProps {
   totalAllVotes?: number;
@@ -49,36 +46,9 @@ export default function ResultPage({ results }: ResultPageProps) {
 };
 
 export const getStaticProps: GetStaticProps = async () => {
-  type Votes = Pick<ResultProps, "votes">;
-  type PartialResult = Omit<ResultProps, "progress" | "position">;
-
-  const db = await Database.Mongo.connectToDataBase(Database.Mongo.uri);
-  const collection = db.collection('votes');
-  const totalVotes = await collection.estimatedDocumentCount();
-
-  const ordenate = (results: PartialResult[]) =>
-    results.sort((a: Votes, b: Votes) => b.votes - a.votes);
-
-  const addProgress = (results: PartialResult[]) =>
-    results.map(r => ({ ...r, progress: (r.votes * 100) / results[0].votes }));
-
-  const addPosition = (results: Omit<ResultProps, "position">[]) =>
-    results.map((r, idx) => ({ ...r, position: idx + 1 }));
-
-  const results: ResultProps[] = await Promise
-    .all(
-      artists.map(async ({ id, name }: ArtistProps) => {
-        const votes = await collection.countDocuments({ id });
-        const percentage = (votes / totalVotes) * 100;
-        return ({ id, name, votes, percentage });
-      }))
-    .then(ordenate)
-    .then(addProgress)
-    .then(addPosition);
-
   return {
     props: {
-      results,
+      results: await getResults(),
     },
     revalidate: next.revalidate.fiveMinutes,
   };

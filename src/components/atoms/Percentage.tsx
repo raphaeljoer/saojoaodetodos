@@ -9,7 +9,7 @@ interface PercentageProps extends TextProps {
 export const Percentage = ({ value, ...props }: PercentageProps) => {
   const limit = (value < 10) ? 4 : 5;
   return (
-    <Text color="white" fontWeight="700" {...props}>
+    <Text fontWeight="700" {...props}>
       {`${String(value).slice(0, limit)}%`}
     </Text>
   );

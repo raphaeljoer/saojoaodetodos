@@ -1,25 +1,25 @@
 
-import { Avatar, AvatarBadge, Box, Flex, Progress, Text } from "@chakra-ui/react";
+import { Flex, FlexProps } from "@chakra-ui/react";
 import React from "react";
 import Heading from "../atoms/Heading";
 import { ResultProps } from "@/@types/result";
 import Status from "./Status";
 import CardStatus from "./CardStatus";
 
-interface CardResult extends ResultProps {
+interface CardResult extends FlexProps {
   value: ResultProps;
 }
 
-export const CardResult = ({ value: v }: CardResult) => {
+export const CardResult = ({ value , ...props}: CardResult) => {
   return (
     <Flex
       boxShadow="xl"
       bgColor="oilblue.500"
       rounded={32}
       p={6}
-      // w={{ base: "xs", sm: "sm", md: "md" }}
+      {...props}
     >
-      <CardStatus value={v} />
+      <CardStatus value={value} />
     </Flex>
   )
 };

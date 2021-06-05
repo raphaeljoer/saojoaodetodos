@@ -1,6 +1,6 @@
 import { Db, MongoClient } from "mongodb";
 
-export namespace DataBase {
+export namespace Database {
   export namespace Mongo {
     export const uri = process.env.SUAMUSICA_SJDT_MONGODB_URI || '';
 
@@ -25,4 +25,4 @@ export namespace DataBase {
   }
 };
 
-export default DataBase;
+export default Database;

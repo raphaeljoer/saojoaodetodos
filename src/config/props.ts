@@ -9,7 +9,7 @@ export namespace Props {
       borderRadius: 40,
       w: "full",
       minH: 260,
-      maxW: { base: "xs", sm: "sm", md: "md", lg: "full" },
+      maxW: "sm",
       align: "center",
       p: 8,
       mx: 8
@@ -20,7 +20,6 @@ export namespace Props {
       bgColor: "#053a5e",
       borderRadius: 40,
       minH: 260,
-      maxW: { base: "xs", sm: "sm", md: "md", lg: "full" },
       align: "center",
       w: "full",
       p: 8,

@@ -8,9 +8,9 @@ interface StatusProps extends FlexProps {
   progress: number;
 };
 
-export const Status = ({ percentage, progress }: StatusProps) => {
+export const Status = ({ percentage, progress, ...props }: StatusProps) => {
   return (
-    <Flex w="full" alignItems="space-between">
+    <Flex w="full" alignItems="space-between" {...props}>
       <Progress
         colorScheme="red"
         w="full"

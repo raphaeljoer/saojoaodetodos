@@ -1,29 +1,38 @@
 
 import { ResultProps } from "@/@types/result";
-import { Avatar, AvatarBadge, Flex, Heading, Text } from "@chakra-ui/react";
+import { Avatar, AvatarBadge, AvatarProps, Flex, FlexProps, Heading, Text } from "@chakra-ui/react";
 import React from "react";
+import { TextProps } from "../atoms/Text";
 import Status from "./Status";
 
-interface CardStatusProps {
+interface CardStatusProps extends FlexProps {
   value: ResultProps;
+  statusProps?: FlexProps;
+  avatarProps?: AvatarProps;
+  nameProps?: TextProps;
 }
 
-export const CardStatus = ({ value: v }: CardStatusProps) => {
+export const CardStatus = ({ value: v, avatarProps, nameProps, statusProps,...props }: CardStatusProps) => {
   return (
-    <Flex w="full">
+    <Flex w="full" color="white" {...props}>
       <Avatar
         border="4px solid white"
         boxShadow="xl"
         size="xl"
         src={`/assets/artist/avatar/${v.id}.jpg`}
+        {...avatarProps}
       >
         <AvatarBadge border="3px solid white" bg="tomato" boxSize={8} placement="top-left">
-          <Text fontSize="xs" color="white" fontWeight="bold">{`${String(v.position)}º`}</Text>
+          <Text fontSize="xs" fontWeight="bold">
+            {`${String(v.position)}º`}
+          </Text>
         </AvatarBadge>
       </Avatar>
       <Flex ml={4} alignItems="flex-start" justify="center" flexDir="column" w="full">
-        <Heading fontSize="2xl" color="white" textAlign="left" mb={4}>{v.name}</Heading>
-        <Status percentage={v.percentage} progress={v.progress} />
+        <Heading fontSize="2xl" textAlign="left" mb={4} {...nameProps}>
+          {v.name}
+        </Heading>
+        <Status percentage={v.percentage} progress={v.progress} {...statusProps} />
       </Flex>
     </Flex>)
 };

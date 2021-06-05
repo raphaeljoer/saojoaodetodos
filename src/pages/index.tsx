@@ -17,6 +17,13 @@ import Recaptcha from "@/config/recaptcha";
 import Card from "@/components/molecules/Card";
 import { ArtistProps } from "@/@types/artist";
 import { Props } from "@/config/props";
+import CardStatus from "@/components/molecules/CardStatus";
+import { GetStaticProps } from "next";
+import { getResults } from "@/data/request/results";
+import { next } from "@/config/app";
+import { ResultProps } from "@/@types/result";
+import ToastSucess from "@/components/molecules/ToastResult";
+import { CardResult } from "@/components/molecules/CardResult";
 
 const gridProps: GridProps = {
   templateColumns: { base: "repeat(1, 1fr)", lg: "repeat(2 ,1fr)", xl: "repeat(3 ,1fr)" },
@@ -37,7 +44,25 @@ interface Vote {
   token: string;
 }
 
-export default function HomePage() {
+interface HomePageProps {
+  results: ResultProps[];
+}
+
+const displayCardStatus = (result: ResultProps) => {
+  return (
+    <CardStatus
+      value={result}
+      rounded="lg"
+      color="oilblue.500"
+      avatarProps={{ w: 16, h: 16, border: "none" }}
+      nameProps={{ mb: 2 }}
+      my={4}
+      mr={2}
+    />
+  )
+}
+
+export default function HomePage({ results }: HomePageProps) {
   const isDesktop = useBreakpointValue({ base: false, lg: true })
   const toastPosition = isDesktop ? 'top-right' : 'top';
   const { siteKey } = Recaptcha.V3;
@@ -61,10 +86,12 @@ export default function HomePage() {
 
   const handleSuccess = ({ id, name }: ArtistProps) => {
     toast.closeAll();
+    const result = results.find(r => r.id === id);
+
     toast({
       status: 'success',
-      title: `Você votou em ${name}`,
-      description: 'Você pode votar quantas vezes quiser!',
+      title: `Você votou em:`,
+      description: result && displayCardStatus(result),
       variant: 'left-accent',
       position: toastPosition,
       isClosable: true,
@@ -152,7 +179,7 @@ export default function HomePage() {
                 isDisabled={!isAvailable}
                 isLoading={isVoting}
                 loadingText="Votando"
-                _disabled={{opacity: 0.7, cursor: "not-allowed"}}
+                _disabled={{ opacity: 0.7, cursor: "not-allowed" }}
               >
                 {!isVoting && !isAvailable && <CountDown />}
                 {!isVoting && isAvailable && 'Votar'}
@@ -163,4 +190,13 @@ export default function HomePage() {
       </Container>
     </Layout>
   );
+};
+
+export const getStaticProps: GetStaticProps = async () => {
+  return {
+    props: {
+      results: await getResults(),
+    },
+    revalidate: next.revalidate.fiveMinutes,
+  };
 };

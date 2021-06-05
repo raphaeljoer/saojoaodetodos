@@ -40,7 +40,7 @@ export default function SharePage({ slug }: SharePageProps) {
   return (
     <Layout>
       <NextSeo {...SEO.page.share} />
-      <Container minH={600} mb={24} maxW="sm">
+      <Container minH={600} mb={24} maxW="lg">
         
         <Heading textAlign="center" mt={2}>
           {content.title}
@@ -61,7 +61,7 @@ export default function SharePage({ slug }: SharePageProps) {
           {content.share}
         </Heading>
 
-        <Grid templateColumns="repeat(3, 1fr)" w="full" maxW="sm">
+        <Grid templateColumns="repeat(3, 1fr)" w="full">
           <Link href={`/share/stories/${slug}`}>
             <ShareButton title="Stories" icon={FiInstagram} />
           </Link>
