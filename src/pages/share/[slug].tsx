@@ -42,7 +42,8 @@ export default function SharePage({ slug }: SharePageProps) {
     <Layout>
       <NextSeo {...SEO.page.share} />
       <Container minH={600} mb={24} maxW="sm">
-        <Heading textAlign="center" mt={2} fontSize="4xl">
+        
+        <Heading textAlign="center" mt={2}>
           {content.title}
         </Heading>
 

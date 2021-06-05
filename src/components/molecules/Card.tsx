@@ -52,7 +52,7 @@ export const Card = ({ id, name, variant, isAvailable, children, ...props }: Car
     >
       <Avatar {...avatarProps} src={`/assets/artist/avatar/${id}.jpg`}/>
       <Flex h={24} align="center" justifyItems="center" mb={4} >
-        <Heading color="white" px={{ base: 2, lg: 8 }} my={4}>
+        <Heading color="white" my={4}>
           {name}
         </Heading>
       </Flex>

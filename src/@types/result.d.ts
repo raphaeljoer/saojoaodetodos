@@ -4,4 +4,5 @@ export interface ResultProps {
   votes: number;
   percentage: number;
   progress: number;
+  position: number;
 };
