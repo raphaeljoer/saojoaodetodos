@@ -7,7 +7,6 @@ import { IconType } from "react-icons";
 const containerProps: IconButtonProps = {
   flexDir: "column",
   "aria-label": "share button",
-  borderRadius: "2xl",
   justifyContent: "center",
   color: "white",
   cursor: "pointer",
@@ -15,7 +14,8 @@ const containerProps: IconButtonProps = {
   h: 20,
   w: 20,
   p: 6,
-  m: 1
+  m: 1,
+  rounded: 24
 }
 
 interface IProps {

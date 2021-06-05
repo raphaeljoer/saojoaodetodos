@@ -6,7 +6,7 @@ export namespace Props {
     export const vote: FlexProps = {
       flexDirection: "column",
       bgColor: "#053a5e",
-      borderRadius: 24,
+      borderRadius: 40,
       w: "full",
       minH: 260,
       maxW: { base: "xs", sm: "sm", md: "md", lg: "full" },
@@ -18,52 +18,7 @@ export namespace Props {
     export const share: FlexProps = {
       flexDirection: "column",
       bgColor: "#053a5e",
-      borderRadius: 24,
-      minH: 260,
-      maxW: { base: "xs", sm: "sm", md: "md", lg: "full" },
-      align: "center",
-      w: "full",
-      p: 8,
-      mx: 8,
-      alignContent: "center",
-      margin: "0 auto",
-      mt: 32
-    };
-  }
-
-
-  export namespace Vote {
-
-    export const card: FlexProps = {
-      flexDirection: "column",
-      bgColor: "#053a5e",
-      borderRadius: 24,
-      w: "full",
-      minH: 260,
-      maxW: { base: "xs", sm: "sm", md: "md", lg: "full" },
-      align: "center",
-      p: 8,
-      mx: 8
-    };
-
-    export const button: ButtonProps = {
-      w: "full",
-      h: 14,
-      borderRadius: "xl",
-      fontSize: 20,
-      color: "#333",
-      fontWeight: "700",
-      bgColor: "#e09133"
-    };
-
-  }
-
-  export namespace Share {
-
-    export const card: FlexProps = {
-      flexDirection: "column",
-      bgColor: "#053a5e",
-      borderRadius: 24,
+      borderRadius: 40,
       minH: 260,
       maxW: { base: "xs", sm: "sm", md: "md", lg: "full" },
       align: "center",
@@ -75,23 +30,4 @@ export namespace Props {
       mt: 32
     };
   };
-  export namespace Button {
-
-    export const card: ButtonProps = {
-      w: "full",
-      h: 14,
-      borderRadius: "xl",
-      fontSize: 20,
-      fontWeight: "700",
-      colorScheme: "red",
-    };
-
-    export const share: ButtonProps = {
-      w: "full",
-      h: 16,
-      borderRadius: "xl",
-      colorScheme: "red",
-      cursor: "pointer",
-    }
-  }
 }

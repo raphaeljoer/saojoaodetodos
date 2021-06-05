@@ -1,4 +1,4 @@
-import { Box, ButtonProps, Center, Grid, Stack } from '@chakra-ui/react';
+import { Box, Stack } from '@chakra-ui/react';
 //next resources
 import { GetStaticPaths, GetStaticProps } from 'next';
 //types
@@ -17,7 +17,6 @@ import SEO from '@/config/seo';
 import { NextSeo } from 'next-seo';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
-import { Props } from '@/config/props';
 
 interface FeedPageProps {
   slug: string;
@@ -57,8 +56,8 @@ export default function FeedPage({ slug }: FeedPageProps) {
         </Box>
 
         <Stack spacing={4} mt={8}>
-          <Button {...Props.Button.share} onClick={() => router.push(path.image)}>Download</Button>
-          <Button {...Props.Button.share} onClick={() => router.push(path.back)}>Voltar</Button>
+          <Button onClick={() => router.push(path.image)}>Download</Button>
+          <Button onClick={() => router.push(path.back)}>Voltar</Button>
         </Stack>
       </Container>
     </Layout>

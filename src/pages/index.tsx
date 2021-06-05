@@ -17,7 +17,6 @@ import Recaptcha from "@/config/recaptcha";
 import Card from "@/components/molecules/Card";
 import { ArtistProps } from "@/@types/artist";
 import { Props } from "@/config/props";
-import Text from "@/components/atoms/Text";
 
 const gridProps: GridProps = {
   templateColumns: { base: "repeat(1, 1fr)", lg: "repeat(2 ,1fr)", xl: "repeat(3 ,1fr)" },
@@ -154,7 +153,6 @@ export default function HomePage() {
                 isLoading={isVoting}
                 loadingText="Votando"
                 _disabled={{opacity: 0.7, cursor: "not-allowed"}}
-                {...Props.Button.card}
               >
                 {!isVoting && !isAvailable && <CountDown />}
                 {!isVoting && isAvailable && 'Votar'}

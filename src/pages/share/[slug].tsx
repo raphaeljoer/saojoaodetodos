@@ -49,10 +49,10 @@ export default function SharePage({ slug }: SharePageProps) {
         <Card id={artist.id} name={artist.name} variant="share">
           <Stack spacing={4} w="full">
             <Link href="/result">
-              <Button {...Props.Button.card}>Ver resultado parcial</Button>
+              <Button>Ver resultado parcial</Button>
             </Link>
             <Link href="/">
-              <Button {...Props.Button.card}>Votar novamente</Button>
+              <Button>Votar novamente</Button>
             </Link>
           </Stack>
         </Card>

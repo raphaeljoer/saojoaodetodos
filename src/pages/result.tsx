@@ -44,7 +44,6 @@ export default function ResultPage({ results }: ResultPageProps) {
 
           <Button
             onClick={() => router.back()}
-            {...Props.Button.share}
             w={{ base: "xs", sm: "sm", md: "md" }}
             mt={8}
           >
