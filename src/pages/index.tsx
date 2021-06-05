@@ -1,10 +1,9 @@
 //chakra-ui
-import { Grid, GridProps, useBreakpointValue, useToast } from "@chakra-ui/react";
+import { Alert, AlertIcon, Button, Grid, GridProps, useBreakpointValue, useToast } from "@chakra-ui/react";
 //next resources
 import { useRouter } from "next/router";
 //core components
 import Layout from "@/components/molecules/Layout";
-import Button from "@/components/atoms/buttons/Button";
 import Container from "@/components/molecules/Container";
 //resources
 import React, { useContext } from "react";
@@ -18,6 +17,7 @@ import Recaptcha from "@/config/recaptcha";
 import Card from "@/components/molecules/Card";
 import { ArtistProps } from "@/@types/artist";
 import { Props } from "@/config/props";
+import Text from "@/components/atoms/Text";
 
 const gridProps: GridProps = {
   templateColumns: { base: "repeat(1, 1fr)", lg: "repeat(2 ,1fr)", xl: "repeat(3 ,1fr)" },
@@ -39,7 +39,7 @@ interface Vote {
 }
 
 export default function HomePage() {
-  const isDesktop = useBreakpointValue({base: false, lg: true})
+  const isDesktop = useBreakpointValue({ base: false, lg: true })
   const toastPosition = isDesktop ? 'top-right' : 'top';
   const { siteKey } = Recaptcha.V3;
   const {
@@ -48,7 +48,7 @@ export default function HomePage() {
 
     isVoting,
     setIsVoting,
-    
+
     setChoice,
 
     handleAvailability,
@@ -144,15 +144,16 @@ export default function HomePage() {
   return (
     <Layout>
       <NextSeo {...SEO.page.home} />
-      <Container my={16}>
+      <Container mt={16} mb={24}>
         <Grid {...gridProps}>
           {artists.map(a => (
-            <Card key={a.id} {...a} variant="vote">
+            <Card key={a.id} {...a} variant="vote" isAvailable={isAvailable}>
               <Button
                 onClick={() => validateVote(a)}
                 isDisabled={!isAvailable}
                 isLoading={isVoting}
                 loadingText="Votando"
+                _disabled={{opacity: 0.7, cursor: "not-allowed"}}
                 {...Props.Button.card}
               >
                 {!isVoting && !isAvailable && <CountDown />}

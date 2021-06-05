@@ -42,9 +42,9 @@ export default function StoriesPage({ slug }: StoriesPageProps) {
   return (
     <Layout>
       <NextSeo {...SEO.page.stories} />
-      <Container minH={600} mb={12} maxW={{ base: "xs", sm: "sm" }}>
+      <Container minH={600} mb={24} maxW={{ base: "xs", sm: "sm" }}>
 
-        <Heading textAlign="center" mt={12} fontSize="4xl">
+        <Heading textAlign="center" mt={4} fontSize="4xl">
           {content.title}
         </Heading>
 

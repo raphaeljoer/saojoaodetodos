@@ -26,7 +26,7 @@ export const Header = ({ }: IProps) => {
           alt={ui.header.logos.alt}
           layout="fill"
           objectFit="contain"
-          objectPosition="top"
+          objectPosition="center"
           priority
         />
       </Box>

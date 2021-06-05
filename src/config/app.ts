@@ -26,7 +26,7 @@ export const next = {
 };
 
 export const nextNprogress = {
-  color: "#FF6700",
+  color: "#e53e3e",
   startPosition: 0.4,
   stopDelayMs: 200,
   height: 4

@@ -33,12 +33,12 @@ export default function ResultPage({ results }: ResultPageProps) {
   return (
     <Layout>
       <NextSeo {...SEO.page.home} />
-      <Container my={24} minH={400}>
+      <Container mb={24} mt={4} minH={400}>
         <Flex align="center" justify="center" flexDir="column">
 
           <Heading fontSize="4xl" mb={8}>Resultado Parcial</Heading>
 
-          <Stack spacing={4}>
+          <Stack spacing={8}>
             {results.map((r, idx) => <CardResult key={r.id} position={idx + 1} {...r} />)}
           </Stack>
 
