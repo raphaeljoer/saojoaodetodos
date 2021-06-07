@@ -10,7 +10,7 @@ export const Percentage = ({ value, ...props }: PercentageProps) => {
   const limit = (value < 10) ? 4 : 5;
   return (
     <Text fontWeight="700" {...props}>
-      {`${String(value).slice(0, limit)}%`}
+      {value ? `${String(value).slice(0, limit)}%` : '0%'}
     </Text>
   );
 };

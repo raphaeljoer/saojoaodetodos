@@ -44,7 +44,7 @@ export const zIndex = {
 
 export const ui = {
   global: {
-    favicon: "/assets/ui/fav/favicon.png",
+    favicon: "/assets/ui/fav/favicon.webp",
     openGraph: {
       cover: `${path.global.openGraph}/cover.jpg`
     },

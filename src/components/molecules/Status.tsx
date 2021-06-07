@@ -17,7 +17,7 @@ export const Status = ({ percentage, progress, ...props }: StatusProps) => {
         size="lg"
         borderRadius="full"
         hasStripe
-        value={progress}
+        value={!!progress ? progress : 0}
       />
       <Percentage value={percentage} ml={4} />
     </Flex>)
