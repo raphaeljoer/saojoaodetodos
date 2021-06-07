@@ -48,7 +48,7 @@ export default function SharePage({ slug }: SharePageProps) {
 
         <Card id={artist.id} name={artist.name} variant="share">
           <Stack spacing={4} w="full">
-            <Link href="/result">
+            <Link href="/resultado">
               <Button>Ver resultado parcial</Button>
             </Link>
             <Link href="/">
