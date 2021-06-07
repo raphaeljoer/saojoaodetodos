@@ -46,7 +46,7 @@ export const ui = {
   global: {
     favicon: "/assets/ui/fav/favicon.webp",
     openGraph: {
-      cover: `${path.global.openGraph}/cover.jpg`
+      cover: `${path.global.openGraph}/cover.webp`
     },
     logo: {
       src: "/assets/img/logo/logo.svg",
