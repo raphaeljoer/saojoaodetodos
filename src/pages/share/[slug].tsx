@@ -34,7 +34,7 @@ export default function SharePage({ slug }: SharePageProps) {
   const content = {
     title: "Eu votei em",
     share: "Compartilhe",
-    whatsapp: `whatsapp://send?text=Ajude você também ${artist.name} a ser escolhida(o) como o Talento São João de Todos 2021 votando no site https://talento.saojoaodetodos.com.br`
+    whatsapp: `whatsapp://send?text=Vem com a gente votar e torcer para ${artist.name} como Talento São João de Todos 2021. Vote agora no site: https://talento.saojoaodetodos.com.br`
   }
 
   return (
