@@ -91,3 +91,9 @@ export const ui = {
     }
   }
 };
+
+export namespace Google {
+  export const tagmanager = {
+    id: process.env.SUAMUSICA_SJDT_GOOGLE_TAG_MANAGER_ID || ''
+  }
+};
