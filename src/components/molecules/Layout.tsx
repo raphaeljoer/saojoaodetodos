@@ -13,8 +13,9 @@ interface IProps {
 export const Layout = ({ children }: IProps) => {
   return (
     <Grid
-      templateRows="216px 1fr auto"
       h="full"
+      minWidth={360}
+      templateRows="216px 1fr auto"
       bgImage={`url(${ui.layout.background.src})`}
       bgPosition="center"
       bgRepeat="repeat"

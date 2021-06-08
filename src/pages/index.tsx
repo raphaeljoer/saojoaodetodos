@@ -137,7 +137,7 @@ export default function HomePage({ results }: HomePageProps) {
   }
 
   const validateVote = async (artist: ArtistProps) => {
-    const action = `vote_${artist.id.replaceAll('-', '_')}`;
+    const action = `vote_${artist.id.split('-').join('_')}`;
 
     if (!siteKey) {
       handleError(error.recaptcha);
@@ -175,7 +175,7 @@ export default function HomePage({ results }: HomePageProps) {
           {artists.map(a => (
             <Card key={a.id} {...a} variant="vote" isAvailable={isAvailable}>
               <Button
-                onClick={() => validateVote(a)}
+                onMouseUp={() => validateVote(a)}
                 isDisabled={!isAvailable}
                 isLoading={isVoting}
                 loadingText="Votando"
