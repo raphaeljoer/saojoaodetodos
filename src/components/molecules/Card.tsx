@@ -9,14 +9,15 @@ import { ui } from "@/config/app";
 interface VariantProps {
   vote: FlexProps;
   share: FlexProps;
+  standard: FlexProps;
 };
 
-interface CardProps {
+interface CardProps extends FlexProps {
   id: string;
   name: string;
-  variant: "vote" | "share";
+  variant: "vote" | "share" | "standard"; 
   isAvailable?: boolean;
-  children: JSX.Element | JSX.Element[];
+  children?: JSX.Element | JSX.Element[];
 };
 
 const avatarProps = {
@@ -36,6 +37,7 @@ export const Card = ({ id, name, variant, isAvailable, children, ...props }: Car
   
 
   const variantSwicher: VariantProps = {
+    "standard": Props.Card.standard,
     "vote": Props.Card.vote,
     "share": Props.Card.share
   }
@@ -47,6 +49,7 @@ export const Card = ({ id, name, variant, isAvailable, children, ...props }: Car
       bgPosition="center"
       bgRepeat="repeat"
       border="4px solid white"
+      maxW="sm"
       {...variantSwicher[variant]}
       {...props}
     >
