@@ -1,15 +1,14 @@
-import { ComponentStyleConfig } from "@chakra-ui/react";
-
+import { ComponentStyleConfig } from '@chakra-ui/react';
 
 export const defaults = {
   fontWeight: 'bold',
   lineHeight: '120%',
   textAlign: 'center',
-  textTransform: 'uppercase'
-}
+  textTransform: 'uppercase',
+};
 
 export const Heading: ComponentStyleConfig = {
-  defaultProps: { variant: 'h2', },
+  defaultProps: { variant: 'h2' },
   variants: {
     h1: { fontSize: '5xl', ...defaults },
     h2: { fontSize: '5xl', ...defaults },

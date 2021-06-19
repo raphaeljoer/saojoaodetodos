@@ -1,5 +1,10 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-import { createContext, Dispatch, useState, useEffect, SetStateAction } from 'react';
+import {
+  createContext,
+  Dispatch,
+  SetStateAction,
+  useEffect,
+  useState,
+} from 'react';
 import { addSeconds, differenceInSeconds, isAfter, isBefore } from 'date-fns';
 
 import CountDown from '@/components/atoms/CountDown';

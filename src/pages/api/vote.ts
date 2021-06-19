@@ -1,4 +1,4 @@
-import { VercelResponse, VercelRequest } from '@vercel/node';
+import { VercelRequest, VercelResponse } from '@vercel/node';
 import axios, { AxiosResponse } from 'axios';
 import Recaptcha from '@/config/recaptcha';
 import Database from '@/config/database';
@@ -12,52 +12,61 @@ interface Vote {
 
 interface CollectionRequestProps {
   id: string;
-  votedAt: Date,
+  votedAt: Date;
   score: number;
   ip: string | string[] | undefined;
 }
 
 interface RecaptchaResponse {
-  recaptchaReponse: AxiosResponse<RecaptchaProps.Response> | null;
+  recaptchaResponse: AxiosResponse<RecaptchaProps.Response> | null;
   err: any;
 }
 
 export default async (request: VercelRequest, response: VercelResponse) => {
   const { id, token }: Vote = request.body;
 
-  if (!token) response.status(500).json({ message: 'You must have a valid token' });
+  if (!token)
+    response.status(500).json({ message: 'You must have a valid token' });
   if (!id) response.status(500).json({ message: 'You must have a valid id' });
-  
+
   const { getUrl, minimumScore } = Recaptcha.V3;
 
   const ip = request.headers['x-forwarded-for'];
   const url = getUrl(token);
 
-  const { recaptchaReponse, err }: RecaptchaResponse = await
-    axios({ method: 'POST', url, timeout: 10000 })
-      .then(recaptchaReponse => ({ recaptchaReponse, err: null }))
-      .catch(err => ({ recaptchaReponse: null, err }));
+  const { recaptchaResponse, err }: RecaptchaResponse = await axios({
+    method: 'POST',
+    url,
+    timeout: 10000,
+  })
+    .then((recaptchaResponse) => ({
+      recaptchaResponse,
+      err: null,
+    }))
+    .catch((err) => ({ recaptchaResponse: null, err }));
 
   if (err) {
     return response.status(500).json({ message: 'Google Api error', err });
   }
 
-  if (!recaptchaReponse) {
+  if (!recaptchaResponse) {
     return response.status(500).json({ message: 'Google Api error' });
   }
 
-  if (!recaptchaReponse.data.success) {
-    return response.status(500).json({ message: 'Google Api error', info: recaptchaReponse.data });
+  if (!recaptchaResponse.data.success) {
+    return response
+      .status(500)
+      .json({ message: 'Google Api error', info: recaptchaResponse.data });
   }
 
-  const { score } = recaptchaReponse.data;
+  const { score } = recaptchaResponse.data;
 
   if (score < minimumScore) {
     return response.status(500).json({ message: 'Are you a robot?' });
   }
 
   const db = await Database.Mongo.connectToDataBase(Database.Mongo.uri);
-  if (!db) throw new Error("Could not connect to database.");
+  if (!db) throw new Error('Could not connect to database.');
 
   const collection = db.collection('votes');
 
@@ -65,14 +74,15 @@ export default async (request: VercelRequest, response: VercelResponse) => {
     id,
     votedAt: new Date(),
     score,
-    ip
+    ip,
   };
 
-  await collection.insertOne(collectionRequest)
-    .then(_data => {
+  await collection
+    .insertOne(collectionRequest)
+    .then((_) => {
       return response.status(200).json({ success: true });
     })
-    .catch(error => {
+    .catch((error) => {
       return response.status(500).json({ error: error });
     });
 };

@@ -16,32 +16,28 @@ import ShareButton from '@/components/atoms/ShareButton';
 import React from 'react';
 import SEO from '@/config/seo';
 import { NextSeo } from 'next-seo';
-import { useRouter } from 'next/router';
 import { FiInstagram, FiMessageCircle } from 'react-icons/fi';
 import Link from '@/components/atoms/Link';
-
 
 interface SharePageProps {
   slug: string;
 }
 
 export default function SharePage({ slug }: SharePageProps) {
-  const router = useRouter();
   const findById = (artist: ArtistProps) => artist.id === slug;
   const artist = artists.find(findById);
   if (!artist) throw new Error("Artist don't exist");
 
   const content = {
-    title: "Eu votei em",
-    share: "Compartilhe",
-    whatsapp: `whatsapp://send?text=Vem com a gente votar e torcer para ${artist.name} como Talento São João de Todos 2021. Vote agora no site: https://talento.saojoaodetodos.com.br`
-  }
+    title: 'Eu votei em',
+    share: 'Compartilhe',
+    whatsapp: `whatsapp://send?text=Vem com a gente votar e torcer para ${artist.name} como Talento São João de Todos 2021. Vote agora no site: https://talento.saojoaodetodos.com.br`,
+  };
 
   return (
     <Layout>
       <NextSeo {...SEO.page.share} />
       <Container minH={600} mb={24} maxW="lg">
-        
         <Heading textAlign="center" mt={2}>
           {content.title}
         </Heading>
@@ -68,7 +64,11 @@ export default function SharePage({ slug }: SharePageProps) {
           <Link href={`/share/feed/${slug}`}>
             <ShareButton title="Feed" icon={FiInstagram} />
           </Link>
-          <Link href={content.whatsapp} replace data-action="share/whatsapp/share">
+          <Link
+            href={content.whatsapp}
+            replace
+            data-action="share/whatsapp/share"
+          >
             <ShareButton title="Whatsapp" icon={FiMessageCircle} />
           </Link>
         </Grid>

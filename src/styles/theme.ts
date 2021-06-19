@@ -1,6 +1,6 @@
-import { extendTheme, ChakraTheme } from "@chakra-ui/react"
+import { ChakraTheme, extendTheme } from '@chakra-ui/react';
 import { config } from './config';
-import { fonts } from "./foundations/fonts";
+import { fonts } from './foundations/fonts';
 import { colors } from './foundations/colors';
 //components
 import { Heading } from './components/heading';
@@ -10,10 +10,10 @@ import { Avatar } from './components/avatar';
 export const theme: ChakraTheme = extendTheme({
   styles: {
     global: {
-      "html": {
-        scrollBehavior: "smooth",
-      }
-    }
+      html: {
+        scrollBehavior: 'smooth',
+      },
+    },
   },
   fonts,
   config,
@@ -22,7 +22,7 @@ export const theme: ChakraTheme = extendTheme({
     Avatar,
     Heading,
     Button,
-  }
+  },
 });
 
-export default extendTheme(theme)
+export default extendTheme(theme);

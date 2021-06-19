@@ -1,21 +1,17 @@
 //chakra-ui
-import { Link as CkLink, Grid, Flex, useBreakpointValue, Box, GridItem, HStack, SimpleGrid } from "@chakra-ui/react"
+import { Box, Flex, SimpleGrid } from '@chakra-ui/react';
 //core components
-import Container from "@/components/molecules/Container";
+import Container from '@/components/molecules/Container';
 //resources
-import React from "react";
-import { ui, zIndex } from "@/config/app";
-import Image from "next/image";
-import Heading from "../atoms/Heading";
-import { partners, sponsors } from "@/data/static/brands";
-import { BrandProps } from "@/@types/brand";
+import React from 'react';
+import { ui, zIndex } from '@/config/app';
+import Image from 'next/image';
+import Heading from '../atoms/Heading';
+import { partners, sponsors } from '@/data/static/brands';
+import { BrandProps } from '@/@types/brand';
 
-export interface Footer {
-  hideLogo?: boolean;
-};
-
-const getBrands = (brands: BrandProps[]) => (
-  brands.map(b => (
+const getBrands = (brands: BrandProps[]) =>
+  brands.map((b) => (
     <Flex key={b.id} pos="relative" mr={6} h={86} align="center">
       <Image
         src={`/assets/brand/${b.id}.png`}
@@ -24,11 +20,9 @@ const getBrands = (brands: BrandProps[]) => (
         priority
       />
     </Flex>
-  ))
-);
+  ));
 
-export const Footer = ({ hideLogo, ...props }: Footer) => {
-
+export const Footer = () => {
   return (
     <Box
       h="auto"
@@ -45,7 +39,10 @@ export const Footer = ({ hideLogo, ...props }: Footer) => {
         bgRepeat="repeatX"
       />
       <Container zIndex={zIndex.low} pos="relative" px={8}>
-        <Flex justifyContent="space-between" flexDir={{ base: "column", lg: "row" }}>
+        <Flex
+          justifyContent="space-between"
+          flexDir={{ base: 'column', lg: 'row' }}
+        >
           <Box mb={12}>
             <Heading fontSize="2xl" color="white" mb={8} textAlign="left">
               PATROCÍNIO
@@ -63,7 +60,6 @@ export const Footer = ({ hideLogo, ...props }: Footer) => {
               {getBrands(partners)}
             </SimpleGrid>
           </Box>
-
         </Flex>
       </Container>
     </Box>

@@ -1,27 +1,18 @@
-
-import { Flex, FlexProps } from "@chakra-ui/react";
-import React from "react";
-import Heading from "../atoms/Heading";
-import { ResultProps } from "@/@types/result";
-import Status from "./Status";
-import CardStatus from "./CardStatus";
+import { Flex, FlexProps } from '@chakra-ui/react';
+import React from 'react';
+import { ResultProps } from '@/@types/result';
+import CardStatus from './CardStatus';
 
 interface CardResult extends FlexProps {
   value: ResultProps;
 }
 
-export const CardResult = ({ value , ...props}: CardResult) => {
+export const CardResult = ({ value, ...props }: CardResult) => {
   return (
-    <Flex
-      boxShadow="xl"
-      bgColor="oilblue.500"
-      rounded={32}
-      p={6}
-      {...props}
-    >
+    <Flex boxShadow="xl" bgColor="oilblue.500" rounded={32} p={6} {...props}>
       <CardStatus value={value} />
     </Flex>
-  )
+  );
 };
 
 export default CardResult;

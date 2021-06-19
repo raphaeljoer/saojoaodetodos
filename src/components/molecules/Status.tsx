@@ -1,12 +1,11 @@
-
-import { Flex, FlexProps, Progress } from "@chakra-ui/react";
-import React from "react";
-import Percentage from "../atoms/Percentage";
+import { Flex, FlexProps, Progress } from '@chakra-ui/react';
+import React from 'react';
+import Percentage from '../atoms/Percentage';
 
 interface StatusProps extends FlexProps {
   percentage: number;
   progress: number;
-};
+}
 
 export const Status = ({ percentage, progress, ...props }: StatusProps) => {
   return (
@@ -17,10 +16,11 @@ export const Status = ({ percentage, progress, ...props }: StatusProps) => {
         size="lg"
         borderRadius="full"
         hasStripe
-        value={!!progress ? progress : 0}
+        value={progress ? progress : 0}
       />
       <Percentage value={percentage} ml={4} />
-    </Flex>)
+    </Flex>
+  );
 };
 
 export default Status;

@@ -1,28 +1,28 @@
-import { ArtistProps } from "@/@types/artist";
+import { ArtistProps } from '@/@types/artist';
 
 export const artists: ArtistProps[] = [
-  { 
-    id: "artur-lima",
+  {
+    id: 'artur-lima',
     name: 'Artur Lima',
   },
-  { 
-    id: "cris-olliver-e-rodrigo-paiva",
+  {
+    id: 'cris-olliver-e-rodrigo-paiva',
     name: 'Cris Olliver e Rodrigo Paiva',
   },
-  { 
-    id: "fernando-amorim",
+  {
+    id: 'fernando-amorim',
     name: 'Fernando Amorim',
   },
-  { 
-    id: "junior-paiva",
+  {
+    id: 'junior-paiva',
     name: 'Junior Paiva',
   },
-  { 
-    id: "maisa-lima",
+  {
+    id: 'maisa-lima',
     name: 'Maisa Lima',
   },
-  { 
-    id: "pedro-vilar",
+  {
+    id: 'pedro-vilar',
     name: 'Pedro Vilar',
   },
 ];

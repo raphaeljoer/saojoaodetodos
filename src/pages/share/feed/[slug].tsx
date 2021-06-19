@@ -29,20 +29,19 @@ export default function FeedPage({ slug }: FeedPageProps) {
   if (!artist) throw new Error("Artist don't exist");
 
   const content = {
-    title: "Compartilhe",
-    subTitle: `Ajude ${artist.name} a ser escolhido como o Talento São João de Todos 2021`
-  }
+    title: 'Compartilhe',
+    subTitle: `Ajude ${artist.name} a ser escolhido como o Talento São João de Todos 2021`,
+  };
 
   const path = {
     image: `/assets/artist/share/feed/${slug}.jpg`,
-    back: `/share/${slug}`
-  }
+    back: `/share/${slug}`,
+  };
 
   return (
     <Layout>
       <NextSeo {...SEO.page.stories} />
-      <Container minH={600} mb={12} maxW={{ base: "xs", sm: "sm" }}>
-
+      <Container minH={600} mb={12} maxW={{ base: 'xs', sm: 'sm' }}>
         <Heading textAlign="center" mt={12} fontSize="4xl">
           {content.title}
         </Heading>
@@ -51,7 +50,13 @@ export default function FeedPage({ slug }: FeedPageProps) {
           {content.subTitle}
         </Text>
 
-        <Box borderRadius="2xl" pos="relative" h={480} overflow="hidden" border="6px solid red">
+        <Box
+          borderRadius="2xl"
+          pos="relative"
+          h={480}
+          overflow="hidden"
+          border="6px solid red"
+        >
           <Image src={path.image} layout="fill" objectFit="cover" />
         </Box>
 

@@ -6,6 +6,5 @@ export namespace RecaptchaProps {
     score: number;
     action: string;
   }
-};
-
+}
 export default RecaptchaProps;
