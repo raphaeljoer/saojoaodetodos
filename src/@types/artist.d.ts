@@ -1,4 +1,4 @@
-declare export interface ArtistProps {
+export interface ArtistProps {
   id: string;
   name: string;
-};
+}

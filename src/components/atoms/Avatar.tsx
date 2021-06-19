@@ -1,13 +1,12 @@
-
-import { Box, BoxProps } from "@chakra-ui/react";
-import Image from 'next/image'
-import React from "react";
+import { Box, BoxProps } from '@chakra-ui/react';
+import Image from 'next/image';
+import React from 'react';
 
 interface IProps extends BoxProps {
   image: string;
-};
+}
 
-export const Avatar = ({image, ...props}: IProps) => {
+export const Avatar = ({ image, ...props }: IProps) => {
   return (
     <Box
       w={24}
@@ -18,14 +17,9 @@ export const Avatar = ({image, ...props}: IProps) => {
       border="6px solid white"
       {...props}
     >
-      <Image
-        src={image}
-        alt="avatar artist"
-        layout="fill"
-        objectFit="cover"
-      />
+      <Image src={image} alt="avatar artist" layout="fill" objectFit="cover" />
     </Box>
-  )
+  );
 };
 
 export default Avatar;

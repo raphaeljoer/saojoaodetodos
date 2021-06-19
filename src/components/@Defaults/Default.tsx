@@ -1,10 +1,9 @@
+import React from 'react';
 
-import React from "react";
+interface IProps {}
 
-interface IProps { };
-
-export const DefaultComponent = ({ }: IProps) => {
-  return ('')
+export const DefaultComponent = ({}: IProps) => {
+  return '';
 };
 
 export default DefaultComponent;

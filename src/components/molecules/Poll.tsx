@@ -1,29 +1,38 @@
-
-import { ArtistProps } from "@/@types/artist";
-import { ResultProps } from "@/@types/result";
+import { ArtistProps } from '@/@types/artist';
+import { ResultProps } from '@/@types/result';
 import { load } from 'recaptcha-v3';
-import Recaptcha from "@/config/recaptcha";
-import { VoteContext } from "@/context/Vote";
-import { Button, Grid, GridProps, useBreakpointValue, useToast } from "@chakra-ui/react";
-import axios from "axios";
-import { useRouter } from "next/router";
-import React, { useContext } from "react";
-import Card from "./Card";
-import CardStatus from "./CardStatus";
+import Recaptcha from '@/config/recaptcha';
+import { VoteContext } from '@/context/Vote';
+import {
+  Button,
+  Grid,
+  GridProps,
+  useBreakpointValue,
+  useToast,
+} from '@chakra-ui/react';
+import axios from 'axios';
+import { useRouter } from 'next/router';
+import React, { useContext } from 'react';
+import Card from './Card';
+import CardStatus from './CardStatus';
 
 const gridProps: GridProps = {
-  templateColumns: { base: "repeat(1, 1fr)", lg: "repeat(2 ,1fr)", xl: "repeat(3 ,1fr)" },
+  templateColumns: {
+    base: 'repeat(1, 1fr)',
+    lg: 'repeat(2 ,1fr)',
+    xl: 'repeat(3 ,1fr)',
+  },
   gap: 8,
   gridRowGap: 32,
-  justifyItems: "center",
+  justifyItems: 'center',
   mt: 8,
 };
 
 const error = {
-  vote: "Você ultrapassou o limite de voto ao mesmo tempo. Por favor aguarde para votar novamente.",
-  token: "Precisamos validar o seu voto!",
-  recaptcha: "Precisamos validar o seu voto!"
-}
+  vote: 'Você ultrapassou o limite de voto ao mesmo tempo. Por favor aguarde para votar novamente.',
+  token: 'Precisamos validar o seu voto!',
+  recaptcha: 'Precisamos validar o seu voto!',
+};
 
 const displayCardStatus = (result: ResultProps) => {
   return (
@@ -31,13 +40,13 @@ const displayCardStatus = (result: ResultProps) => {
       value={result}
       rounded="lg"
       color="oilblue.500"
-      avatarProps={{ w: 16, h: 16, border: "none" }}
+      avatarProps={{ w: 16, h: 16, border: 'none' }}
       nameProps={{ mb: 2 }}
       my={4}
       mr={2}
     />
-  )
-}
+  );
+};
 
 interface Vote {
   artist: ArtistProps;
@@ -47,11 +56,10 @@ interface Vote {
 interface PollProps {
   artists: ArtistProps[];
   results: ResultProps[];
-};
+}
 
 export const Poll = ({ artists, results }: PollProps) => {
-
-  const isDesktop = useBreakpointValue({ base: false, lg: true })
+  const isDesktop = useBreakpointValue({ base: false, lg: true });
   const toastPosition = isDesktop ? 'top-right' : 'top';
   const { siteKey } = Recaptcha.V3;
   const {
@@ -70,11 +78,11 @@ export const Poll = ({ artists, results }: PollProps) => {
   } = useContext(VoteContext);
 
   const router = useRouter();
-  const toast = useToast()
+  const toast = useToast();
 
-  const handleSuccess = ({ id, name }: ArtistProps) => {
+  const handleSuccess = ({ id }: ArtistProps) => {
     toast.closeAll();
-    const result = results.find(r => r.id === id);
+    const result = results.find((r) => r.id === id);
 
     toast({
       status: 'success',
@@ -103,7 +111,7 @@ export const Poll = ({ artists, results }: PollProps) => {
       description: error,
       variant: 'left-accent',
       position: toastPosition,
-      isClosable: true
+      isClosable: true,
     });
 
     setIsVoting(false);
@@ -121,17 +129,16 @@ export const Poll = ({ artists, results }: PollProps) => {
       data: { id, token },
     })
       .then(() => handleSuccess(artist))
-      .catch(err => handleError(error.vote, err));
-  }
+      .catch((err) => handleError(error.vote, err));
+  };
 
   const validateVote = async (artist: ArtistProps) => {
     const action = `vote_${artist.id.split('-').join('_')}`;
 
     if (!siteKey) {
       handleError(error.recaptcha);
-      throw new Error("siteKey don't exist")
-    };
-
+      throw new Error("siteKey don't exist");
+    }
     toast({
       status: 'info',
       title: 'Aguarde!',
@@ -146,25 +153,25 @@ export const Poll = ({ artists, results }: PollProps) => {
     setChoice(artist.id);
 
     load(siteKey)
-      .then(recaptcha => {
+      .then((recaptcha) => {
         recaptcha
           .execute(action)
-          .then(token => handleVote({ artist, token }))
-          .catch(err => handleError(error.token, err));
+          .then((token) => handleVote({ artist, token }))
+          .catch((err) => handleError(error.token, err));
       })
-      .catch(err => handleError(error.recaptcha, err));
+      .catch((err) => handleError(error.recaptcha, err));
   };
 
   return (
     <Grid {...gridProps}>
-      {artists.map(a => (
+      {artists.map((a) => (
         <Card key={a.id} {...a} variant="vote" isAvailable={isAvailable}>
           <Button
             onMouseUp={() => validateVote(a)}
             isDisabled={!isAvailable}
             isLoading={isVoting}
             loadingText="Votando"
-            _disabled={{ opacity: 0.7, cursor: "not-allowed" }}
+            _disabled={{ opacity: 0.7, cursor: 'not-allowed' }}
           >
             {!isVoting && !isAvailable && <CountDown />}
             {!isVoting && isAvailable && 'Votar'}
@@ -172,7 +179,7 @@ export const Poll = ({ artists, results }: PollProps) => {
         </Card>
       ))}
     </Grid>
-  )
+  );
 };
 
 export default Poll;

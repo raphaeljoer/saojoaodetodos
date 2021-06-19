@@ -1,14 +1,12 @@
-
-import { ui } from "@/config/app";
-import { Box, Grid } from "@chakra-ui/react";
-import React from "react";
-import Container from "./Container";
-import Footer from "./Footer";
-import Header from "./Header";
+import { ui } from '@/config/app';
+import { Grid } from '@chakra-ui/react';
+import React from 'react';
+import Footer from './Footer';
+import Header from './Header';
 
 interface IProps {
   children: JSX.Element | JSX.Element[] | any;
-};
+}
 
 export const Layout = ({ children }: IProps) => {
   return (
@@ -21,10 +19,10 @@ export const Layout = ({ children }: IProps) => {
       bgRepeat="repeat"
     >
       <Header />
-        {children}
+      {children}
       <Footer />
     </Grid>
-  )
+  );
 };
 
 export default Layout;

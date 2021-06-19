@@ -1,8 +1,14 @@
-
 import React from 'react';
-import { Tooltip as CkTooltip, TooltipProps, ComponentWithAs } from "@chakra-ui/react"
+import {
+  ComponentWithAs,
+  Tooltip as CkTooltip,
+  TooltipProps,
+} from '@chakra-ui/react';
 
-export const Tooltip: ComponentWithAs<"div", TooltipProps> = ({ children, ...props }: TooltipProps) => (
+export const Tooltip: ComponentWithAs<'div', TooltipProps> = ({
+  children,
+  ...props
+}: TooltipProps) => (
   <CkTooltip
     hasArrow
     colorScheme="red"

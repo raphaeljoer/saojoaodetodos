@@ -5,4 +5,4 @@ export interface ResultProps {
   percentage: number;
   progress: number;
   position: number;
-};
+}

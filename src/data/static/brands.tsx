@@ -1,4 +1,4 @@
-import { BrandProps } from "@/@types/brand";
+import { BrandProps } from '@/@types/brand';
 
 export const sponsors: BrandProps[] = [
   {
