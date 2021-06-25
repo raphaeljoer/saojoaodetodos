@@ -1,7 +1,6 @@
 //core components
 import Layout from '@/components/molecules/Layout';
 import Container from '@/components/molecules/Container';
-import Winner from '@/components/molecules/Winner';
 //resources
 import React from 'react';
 import { GetStaticProps } from 'next';
@@ -13,6 +12,7 @@ import { next } from '@/config/app';
 import { getResults } from '@/data/request/results';
 //types
 import { ResultProps } from '@/@types/result';
+import { SwitchPollStatus } from '@/components/molecules/SwitchPollStatus';
 
 interface HomePageProps {
   results: ResultProps[];
@@ -23,7 +23,7 @@ export default function HomePage({ results }: HomePageProps) {
     <Layout>
       <NextSeo {...SEO.page.home} />
       <Container mt={16} mb={24}>
-        <Winner results={results} />
+        <SwitchPollStatus results={results} />
       </Container>
     </Layout>
   );
