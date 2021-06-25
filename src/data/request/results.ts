@@ -1,13 +1,13 @@
-import { Database } from '@/config/database';
 import { ResultProps } from '@/@types/result';
 import { ArtistProps } from '@/@types/artist';
 import artists from '../static/artists';
+import * as Mongo from '@/config/database/mongo';
 
 export const getResults = async () => {
   type Votes = Pick<ResultProps, 'votes'>;
   type PartialResult = Omit<ResultProps, 'progress' | 'position'>;
 
-  const db = await Database.Mongo.connectToDataBase(Database.Mongo.uri);
+  const db = await Mongo.connectToDataBase(Mongo.uri);
   const collection = db.collection('votes');
   const totalVotes = await collection.estimatedDocumentCount();
 
@@ -38,7 +38,7 @@ export const getResults = async () => {
 };
 
 export const getTotalVotes = async () => {
-  const db = await Database.Mongo.connectToDataBase(Database.Mongo.uri);
+  const db = await Mongo.connectToDataBase(Mongo.uri);
   const collection = db.collection('votes');
   return await collection.estimatedDocumentCount();
 };

@@ -1,8 +1,8 @@
 import { VercelRequest, VercelResponse } from '@vercel/node';
 import axios, { AxiosResponse } from 'axios';
-import Recaptcha from '@/config/recaptcha';
-import Database from '@/config/database';
-import RecaptchaProps from '@/@types/recaptcha';
+import * as Recaptcha from '@/config/recaptcha/v3';
+import * as RecaptchaProps from '@/@types/recaptcha';
+import * as Mongo from '@/config/database/mongo';
 
 interface Vote {
   id: string;
@@ -29,7 +29,7 @@ export default async (request: VercelRequest, response: VercelResponse) => {
     response.status(500).json({ message: 'You must have a valid token' });
   if (!id) response.status(500).json({ message: 'You must have a valid id' });
 
-  const { getUrl, minimumScore } = Recaptcha.V3;
+  const { getUrl, minimumScore } = Recaptcha;
 
   const ip = request.headers['x-forwarded-for'];
   const url = getUrl(token);
@@ -65,7 +65,7 @@ export default async (request: VercelRequest, response: VercelResponse) => {
     return response.status(500).json({ message: 'Are you a robot?' });
   }
 
-  const db = await Database.Mongo.connectToDataBase(Database.Mongo.uri);
+  const db = await Mongo.connectToDataBase(Mongo.uri);
   if (!db) throw new Error('Could not connect to database.');
 
   const collection = db.collection('votes');

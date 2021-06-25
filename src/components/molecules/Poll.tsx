@@ -1,7 +1,7 @@
 import { ArtistProps } from '@/@types/artist';
 import { ResultProps } from '@/@types/result';
 import { load } from 'recaptcha-v3';
-import Recaptcha from '@/config/recaptcha';
+import * as Recaptcha from '@/config/recaptcha/v3';
 import { VoteContext } from '@/context/Vote';
 import {
   Button,
@@ -61,7 +61,7 @@ interface PollProps {
 export const Poll = ({ artists, results }: PollProps) => {
   const isDesktop = useBreakpointValue({ base: false, lg: true });
   const toastPosition = isDesktop ? 'top-right' : 'top';
-  const { siteKey } = Recaptcha.V3;
+  const { siteKey } = Recaptcha;
   const {
     isAvailable,
     setIsAvailable,
