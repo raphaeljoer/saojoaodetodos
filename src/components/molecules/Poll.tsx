@@ -13,7 +13,7 @@ import {
 import axios from 'axios';
 import { useRouter } from 'next/router';
 import React, { useContext } from 'react';
-import Card from './Card';
+import Card from './Card/Card';
 import CardStatus from './CardStatus';
 
 const gridProps: GridProps = {
@@ -139,6 +139,7 @@ export const Poll = ({ artists, results }: PollProps) => {
       handleError(error.recaptcha);
       throw new Error("siteKey don't exist");
     }
+
     toast({
       status: 'info',
       title: 'Aguarde!',
@@ -165,7 +166,7 @@ export const Poll = ({ artists, results }: PollProps) => {
   return (
     <Grid {...gridProps}>
       {artists.map((a) => (
-        <Card key={a.id} {...a} variant="vote" isAvailable={isAvailable}>
+        <Card key={a.id} {...a} isAvailable={isAvailable}>
           <Button
             onMouseUp={() => validateVote(a)}
             isDisabled={!isAvailable}

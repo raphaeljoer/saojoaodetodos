@@ -3,7 +3,7 @@ import { Heading, Text } from '@chakra-ui/react';
 //resources
 import React from 'react';
 //core-components
-import Card from './Card';
+import Card from './Card/Card';
 //types
 import { ResultProps } from '@/@types/result';
 import * as Format from '@/utils/format/number';

@@ -15,8 +15,10 @@ interface SwitchPollStatusProps {
   results: ResultProps[];
 }
 
-export const SwitchPollStatus = ({ results }: SwitchPollStatusProps) => {
-  const [status, setStatus] = useState('open');
+export const SwitchPollStatus = ({
+  results,
+}: SwitchPollStatusProps): JSX.Element | null => {
+  const [status, setStatus] = useState<string | null>(null);
 
   const updateStatus = () => {
     const status = {
@@ -39,7 +41,7 @@ export const SwitchPollStatus = ({ results }: SwitchPollStatusProps) => {
     setInterval(() => updateStatus(), checkTime);
   }, []);
 
-  return display[status];
+  return status ? display[status] : null;
 };
 
 export default SwitchPollStatus;

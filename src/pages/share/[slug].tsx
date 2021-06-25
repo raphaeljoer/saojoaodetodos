@@ -6,7 +6,7 @@ import { ArtistProps } from '@/@types/artist';
 //data
 import artists from '@/data/static/artists';
 //core components
-import Card from '@/components/molecules/Card';
+import Card from '@/components/molecules/Card/Card';
 import Layout from '@/components/molecules/Layout';
 import Button from '@/components/atoms/buttons/Button';
 import Heading from '@/components/atoms/Heading';
