@@ -1,8 +1,6 @@
-import { Avatar, Flex, FlexProps } from '@chakra-ui/react';
+import { Text, Avatar, Flex, FlexProps, Heading } from '@chakra-ui/react';
 import React from 'react';
-import Heading from '../../atoms/Heading';
-import Text from '../../atoms/Text';
-import { ui } from '@/config/app';
+import * as ui from '@/config/ui';
 import * as Style from './styles';
 
 interface CardProps extends FlexProps {

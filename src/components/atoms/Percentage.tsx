@@ -1,5 +1,7 @@
+//chakra-ui
+import { Text, TextProps } from '@chakra-ui/react';
+//resources
 import React from 'react';
-import Text, { TextProps } from '@/components/atoms/Text';
 
 interface PercentageProps extends TextProps {
   value: number;

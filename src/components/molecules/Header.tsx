@@ -1,4 +1,4 @@
-import { ui } from '@/config/app';
+import * as ui from '@/config/ui';
 import { Box } from '@chakra-ui/react';
 import Image from 'next/image';
 import React from 'react';

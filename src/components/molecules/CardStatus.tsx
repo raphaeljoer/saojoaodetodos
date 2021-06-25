@@ -7,9 +7,9 @@ import {
   FlexProps,
   Heading,
   Text,
+  TextProps,
 } from '@chakra-ui/react';
 //core-components
-import { TextProps } from '../atoms/Text';
 import Status from './Status';
 //resources
 import React from 'react';

@@ -1,6 +1,7 @@
+//chakra-ui
+import { Text, Flex, IconButton, IconButtonProps } from '@chakra-ui/react';
+//resources
 import React from 'react';
-import { Flex, IconButton, IconButtonProps } from '@chakra-ui/react';
-import Text from '@/components/atoms/Text';
 import { IconType } from 'react-icons';
 
 const containerProps: IconButtonProps = {

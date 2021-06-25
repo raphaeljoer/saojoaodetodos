@@ -1,4 +1,4 @@
-import { Grid, Stack } from '@chakra-ui/react';
+import { Button, Grid, Heading, Stack } from '@chakra-ui/react';
 //next resources
 import { GetStaticPaths, GetStaticProps } from 'next';
 //types
@@ -8,16 +8,14 @@ import artists from '@/data/static/artists';
 //core components
 import Card from '@/components/molecules/Card/Card';
 import Layout from '@/components/molecules/Layout';
-import Button from '@/components/atoms/buttons/Button';
-import Heading from '@/components/atoms/Heading';
 import Container from '@/components/molecules/Container';
 import ShareButton from '@/components/atoms/ShareButton';
+import Link from '@/components/atoms/Link';
 //resources
 import React from 'react';
 import SEO from '@/config/seo';
 import { NextSeo } from 'next-seo';
 import { FiInstagram, FiMessageCircle } from 'react-icons/fi';
-import Link from '@/components/atoms/Link';
 
 interface SharePageProps {
   slug: string;

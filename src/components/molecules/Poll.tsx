@@ -61,7 +61,6 @@ interface PollProps {
 export const Poll = ({ artists, results }: PollProps) => {
   const isDesktop = useBreakpointValue({ base: false, lg: true });
   const toastPosition = isDesktop ? 'top-right' : 'top';
-  const { siteKey } = Recaptcha;
   const {
     isAvailable,
     setIsAvailable,
@@ -135,7 +134,7 @@ export const Poll = ({ artists, results }: PollProps) => {
   const validateVote = async (artist: ArtistProps) => {
     const action = `vote_${artist.id.split('-').join('_')}`;
 
-    if (!siteKey) {
+    if (!Recaptcha.siteKey) {
       handleError(error.recaptcha);
       throw new Error("siteKey don't exist");
     }
@@ -153,7 +152,7 @@ export const Poll = ({ artists, results }: PollProps) => {
     setIsVoting(true);
     setChoice(artist.id);
 
-    load(siteKey)
+    load(Recaptcha.siteKey)
       .then((recaptcha) => {
         recaptcha
           .execute(action)

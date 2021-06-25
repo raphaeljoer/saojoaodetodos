@@ -1,4 +1,4 @@
-import { ui } from '@/config/app';
+import * as ui from '@/config/ui';
 import { Grid } from '@chakra-ui/react';
 import React from 'react';
 import Footer from './Footer';

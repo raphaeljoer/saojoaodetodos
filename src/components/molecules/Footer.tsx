@@ -1,13 +1,15 @@
 //chakra-ui
-import { Box, Flex, SimpleGrid } from '@chakra-ui/react';
+import { Box, Flex, SimpleGrid, Heading } from '@chakra-ui/react';
 //core components
 import Container from '@/components/molecules/Container';
 //resources
 import React from 'react';
-import { ui, zIndex } from '@/config/app';
 import Image from 'next/image';
-import Heading from '../atoms/Heading';
+import * as ui from '@/config/ui';
+import { zIndex } from '@/config/app';
+//data
 import { partners, sponsors } from '@/data/static/brands';
+//types
 import { BrandProps } from '@/@types/brand';
 
 const getBrands = (brands: BrandProps[]) =>

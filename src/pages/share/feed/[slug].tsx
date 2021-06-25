@@ -1,4 +1,4 @@
-import { Box, Stack } from '@chakra-ui/react';
+import { Button, Text, Box, Stack, Heading } from '@chakra-ui/react';
 //next resources
 import { GetStaticPaths, GetStaticProps } from 'next';
 //types
@@ -7,9 +7,6 @@ import { ArtistProps } from '@/@types/artist';
 import artists from '@/data/static/artists';
 //core components
 import Layout from '@/components/molecules/Layout';
-import Button from '@/components/atoms/buttons/Button';
-import Heading from '@/components/atoms/Heading';
-import Text from '@/components/atoms/Text';
 import Container from '@/components/molecules/Container';
 //resources
 import React from 'react';

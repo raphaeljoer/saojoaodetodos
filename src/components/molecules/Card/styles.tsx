@@ -1,5 +1,5 @@
 //chakra-ui
-import { FlexProps } from '@chakra-ui/react';
+import { AvatarProps, FlexProps } from '@chakra-ui/react';
 import { FiUser } from 'react-icons/fi';
 //resources
 import React from 'react';
@@ -23,7 +23,7 @@ export const share: FlexProps = {
   mt: 32,
 };
 
-export const avatar = {
+export const avatar: AvatarProps = {
   mt: -28,
   w: 48,
   h: 48,

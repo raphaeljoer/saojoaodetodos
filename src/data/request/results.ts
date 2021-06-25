@@ -1,7 +1,10 @@
+//config
+import * as Mongo from '@/config/database/mongo';
+//data
+import artists from '@/data/static/artists';
+//types
 import { ResultProps } from '@/@types/result';
 import { ArtistProps } from '@/@types/artist';
-import artists from '../static/artists';
-import * as Mongo from '@/config/database/mongo';
 
 export const getResults = async () => {
   type Votes = Pick<ResultProps, 'votes'>;
