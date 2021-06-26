@@ -7,12 +7,12 @@ import { GetStaticProps } from 'next';
 import { NextSeo } from 'next-seo';
 //config
 import SEO from '@/config/seo';
-import { next } from '@/config/app';
 //data
 import { getResults } from '@/data/request/results';
 //types
 import { ResultProps } from '@/@types/result';
 import { SwitchPollStatus } from '@/components/molecules/SwitchPollStatus';
+import { time } from '@/utils/time';
 
 interface HomePageProps {
   results: ResultProps[];
@@ -34,6 +34,6 @@ export const getStaticProps: GetStaticProps = async () => {
     props: {
       results: await getResults(),
     },
-    revalidate: next.revalidate.fiveMinutes,
+    revalidate: time.inSeconds.minute.five,
   };
 };

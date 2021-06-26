@@ -1,15 +1,19 @@
+//vercel
 import { VercelRequest, VercelResponse } from '@vercel/node';
-import axios, { AxiosResponse } from 'axios';
-import * as Recaptcha from '@/config/recaptcha/v3';
-import * as RecaptchaProps from '@/@types/recaptcha';
-import * as Mongo from '@/config/database/mongo';
+//resources
 import isAfter from 'date-fns/isAfter/index';
+import axios, { AxiosResponse } from 'axios';
+//config
 import { date } from '@/config/poll';
+import * as Recaptcha from '@/config/services/recaptcha/v3';
+import * as Mongo from '@/config/database/mongo';
+//types
+import * as RecaptchaProps from '@/@types/recaptcha';
+import { timeout } from '@/config/app';
 
-interface Vote {
+interface BodyRequest {
   id: string;
   token: string;
-  action: string;
 }
 
 interface CollectionRequestProps {
@@ -26,7 +30,7 @@ interface RecaptchaResponse {
 
 export default async (request: VercelRequest, response: VercelResponse) => {
   const currentDate = new Date();
-  const { id, token }: Vote = request.body;
+  const { id, token }: BodyRequest = request.body;
 
   if (isAfter(currentDate, date.closed.start)) {
     response.status(500).json({ message: 'Poll closed' });
@@ -46,7 +50,7 @@ export default async (request: VercelRequest, response: VercelResponse) => {
   const { recaptchaResponse, err }: RecaptchaResponse = await axios({
     method: 'POST',
     url,
-    timeout: 10000,
+    timeout: timeout.request,
   })
     .then((recaptchaResponse) => ({
       recaptchaResponse,

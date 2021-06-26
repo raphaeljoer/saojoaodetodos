@@ -6,10 +6,10 @@ import artists from '@/data/static/artists';
 import { ResultProps } from '@/@types/result';
 import { ArtistProps } from '@/@types/artist';
 
-export const getResults = async () => {
-  type Votes = Pick<ResultProps, 'votes'>;
-  type PartialResult = Omit<ResultProps, 'progress' | 'position'>;
+type Votes = Pick<ResultProps, 'votes'>;
+type PartialResult = Omit<ResultProps, 'progress' | 'position'>;
 
+export const getResults = async () => {
   const db = await Mongo.connectToDataBase(Mongo.uri);
   const collection = db.collection('votes');
   const totalVotes = await collection.estimatedDocumentCount();

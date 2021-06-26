@@ -1,11 +1,7 @@
-export const next = {
-  revalidate: {
-    oneMinute: 60,
-    fiveMinutes: 300,
-    halfHour: 1800,
-    hour: 3600,
-    day: 86400,
-  },
+import { time } from '@/utils/time';
+
+export const timeout = {
+  request: time.inMilliseconds.seconds.fifteen,
 };
 
 export const nextNprogress = {

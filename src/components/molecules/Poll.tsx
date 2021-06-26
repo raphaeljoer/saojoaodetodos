@@ -1,8 +1,4 @@
-import { ArtistProps } from '@/@types/artist';
-import { ResultProps } from '@/@types/result';
-import { load } from 'recaptcha-v3';
-import * as Recaptcha from '@/config/recaptcha/v3';
-import { VoteContext } from '@/context/Vote';
+//chakra-ui
 import {
   Button,
   Grid,
@@ -10,11 +6,22 @@ import {
   useBreakpointValue,
   useToast,
 } from '@chakra-ui/react';
-import axios from 'axios';
-import { useRouter } from 'next/router';
+//core-components
+import Card from '@/components/molecules/Card/Card';
+import CardStatus from '@/components/molecules/CardStatus';
+//context
+import { VoteContext } from '@/context/Vote';
+//resources
 import React, { useContext } from 'react';
-import Card from './Card/Card';
-import CardStatus from './CardStatus';
+import { useRouter } from 'next/router';
+import { load } from 'recaptcha-v3';
+import axios from 'axios';
+//config
+import { timeout } from '@/config/app';
+import * as Recaptcha from '@/config/services/recaptcha/v3';
+//types
+import { ArtistProps } from '@/@types/artist';
+import { ResultProps } from '@/@types/result';
 
 const gridProps: GridProps = {
   templateColumns: {
@@ -124,7 +131,7 @@ export const Poll = ({ artists, results }: PollProps) => {
     axios({
       method: 'POST',
       url: '/api/vote',
-      timeout: 10000,
+      timeout: timeout.request,
       data: { id, token },
     })
       .then(() => handleSuccess(artist))

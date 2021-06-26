@@ -10,10 +10,10 @@ import SEO from '@/config/seo';
 import { NextSeo } from 'next-seo';
 import { GetStaticProps } from 'next';
 import { useRouter } from 'next/router';
-import { next } from '@/config/app';
 //types
 import { ResultProps } from '@/@types/result';
 import { getResults } from '@/data/request/results';
+import { time } from '@/utils/time';
 
 interface ResultPageProps {
   totalAllVotes?: number;
@@ -48,6 +48,6 @@ export const getStaticProps: GetStaticProps = async () => {
     props: {
       results: await getResults(),
     },
-    revalidate: next.revalidate.fiveMinutes,
+    revalidate: time.inSeconds.minute.five,
   };
 };

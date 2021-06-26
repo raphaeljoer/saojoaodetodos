@@ -3,34 +3,33 @@ import Poll from '@/components/molecules/Poll';
 import Closed from '@/components/molecules/Closed';
 import Winner from '@/components/molecules/Winner';
 //resources
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { isBetween } from '@/utils/date';
 //data
 import artists from '@/data/static/artists';
+//config
+import { checkTime, date } from '@/config/poll';
 //types
 import { ResultProps } from '@/@types/result';
-import { checkTime, date } from '@/config/poll';
 
-interface SwitchPollStatusProps {
-  results: ResultProps[];
-}
+type IStatus = 'open' | 'closed' | 'winner';
+type IDisplay = { [key in IStatus]: JSX.Element };
+type SwitchPollStatusProps = { results: ResultProps[] };
 
 export const SwitchPollStatus = ({
   results,
 }: SwitchPollStatusProps): JSX.Element | null => {
-  const [status, setStatus] = useState<string | null>(null);
+  const [status, setStatus] = useState<IStatus | null>(null);
 
-  const updateStatus = () => {
-    const status = {
-      open: isBetween(date.open.start, date.open.end),
-      closed: isBetween(date.closed.start, date.closed.end),
-      winner: isBetween(date.winner.start, date.winner.end),
-    };
+  const updateStatus = useCallback(() => {
+    new Map<IStatus, boolean>([
+      ['open', isBetween(date.open.start, date.open.end)],
+      ['closed', isBetween(date.closed.start, date.closed.end)],
+      ['winner', isBetween(date.winner.start, date.winner.end)],
+    ]).forEach((v, k) => v && setStatus(k));
+  }, []);
 
-    Object.entries(status).forEach((s) => s[1] && setStatus(s[0]));
-  };
-
-  const display: { [key: string]: JSX.Element } = {
+  const display: IDisplay = {
     open: <Poll artists={artists} results={results} />,
     closed: <Closed />,
     winner: <Winner results={results} />,
@@ -40,7 +39,7 @@ export const SwitchPollStatus = ({
     updateStatus();
     const checkStatus = setInterval(updateStatus, checkTime);
     return () => clearInterval(checkStatus);
-  }, []);
+  }, [updateStatus]);
 
   return status ? display[status] : null;
 };
