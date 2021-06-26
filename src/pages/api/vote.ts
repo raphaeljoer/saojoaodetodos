@@ -3,6 +3,8 @@ import axios, { AxiosResponse } from 'axios';
 import * as Recaptcha from '@/config/recaptcha/v3';
 import * as RecaptchaProps from '@/@types/recaptcha';
 import * as Mongo from '@/config/database/mongo';
+import isAfter from 'date-fns/isAfter/index';
+import { date } from '@/config/poll';
 
 interface Vote {
   id: string;
@@ -23,10 +25,17 @@ interface RecaptchaResponse {
 }
 
 export default async (request: VercelRequest, response: VercelResponse) => {
+  const currentDate = new Date();
   const { id, token }: Vote = request.body;
 
-  if (!token)
+  if (isAfter(currentDate, date.closed.start)) {
+    response.status(500).json({ message: 'Poll closed' });
+  }
+
+  if (!token) {
     response.status(500).json({ message: 'You must have a valid token' });
+  }
+
   if (!id) response.status(500).json({ message: 'You must have a valid id' });
 
   const { getUrl, minimumScore } = Recaptcha;
@@ -72,7 +81,7 @@ export default async (request: VercelRequest, response: VercelResponse) => {
 
   const collectionRequest: CollectionRequestProps = {
     id,
-    votedAt: new Date(),
+    votedAt: currentDate,
     score,
     ip,
   };

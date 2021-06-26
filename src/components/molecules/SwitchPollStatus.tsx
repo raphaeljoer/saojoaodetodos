@@ -38,7 +38,8 @@ export const SwitchPollStatus = ({
 
   useEffect(() => {
     updateStatus();
-    setInterval(() => updateStatus(), checkTime);
+    const checkStatus = setInterval(updateStatus, checkTime);
+    return () => clearInterval(checkStatus);
   }, []);
 
   return status ? display[status] : null;
