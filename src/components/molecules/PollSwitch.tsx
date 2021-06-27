@@ -14,11 +14,11 @@ import { ResultProps } from '@/@types/result';
 
 type IStatus = 'open' | 'closed' | 'winner';
 type IDisplay = { [key in IStatus]: JSX.Element };
-type SwitchPollStatusProps = { results: ResultProps[] };
+type PollSwitchProps = { results: ResultProps[] };
 
-export const SwitchPollStatus = ({
+export const PollSwitch = ({
   results,
-}: SwitchPollStatusProps): JSX.Element | null => {
+}: PollSwitchProps): JSX.Element | null => {
   const [status, setStatus] = useState<IStatus | null>(null);
 
   const updateStatus = useCallback(() => {
@@ -44,4 +44,4 @@ export const SwitchPollStatus = ({
   return status ? display[status] : null;
 };
 
-export default SwitchPollStatus;
+export default PollSwitch;
