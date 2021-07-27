@@ -27,7 +27,6 @@ export const Header = () => {
         alignItems="center"
         justifySelf="center"
       >
-        <Text>Votação válida até junho de 2021</Text>
         <Image
           src={ui.header.logos.src}
           alt={ui.header.logos.alt}
