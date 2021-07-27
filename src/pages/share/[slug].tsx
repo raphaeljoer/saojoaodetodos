@@ -2,7 +2,7 @@ import { Button, Grid, Heading, Stack } from '@chakra-ui/react';
 //next resources
 import { GetStaticPaths, GetStaticProps } from 'next';
 //types
-import { ArtistProps } from '@/@types/artist';
+import { ArtistProps } from '@/@Entities/artist';
 //data
 import artists from '@/data/static/artists';
 //core components

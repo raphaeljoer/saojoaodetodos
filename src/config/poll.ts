@@ -1,16 +1,20 @@
+import { IPollDate, IPollStatus } from '@/@Entities/poll';
+
 export const checkTime = 60000;
 
-export const date = {
+export const status: IPollStatus[] = ['open', 'closed', 'winner'];
+
+export const date: IPollDate = {
   open: {
-    start: new Date('2021-06-06T20:00:00'),
-    end: new Date('2021-06-18T23:59:00'),
+    start: new Date('2021-05-06T20:00:00'),
+    end: new Date('2031-05-18T23:59:59'),
   },
   closed: {
-    start: new Date('2021-06-19T00:00:00'),
-    end: new Date('2021-06-20T23:59:00'),
+    start: new Date('2031-05-18T00:00:00'),
+    end: new Date('2031-05-19T23:59:59'),
   },
   winner: {
-    start: new Date('2021-06-21T00:00:00'),
-    end: new Date('2099-06-21T00:00:00'),
+    start: new Date('2031-05-19T00:00:00'),
+    end: new Date('2131-05-19T00:00:00'),
   },
 };

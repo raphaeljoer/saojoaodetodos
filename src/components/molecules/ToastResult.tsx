@@ -1,4 +1,4 @@
-import { ResultProps } from '@/@types/result';
+import { ResultProps } from '@/@Entities/result';
 import { Box, BoxProps } from '@chakra-ui/react';
 import React from 'react';
 import CardStatus from './CardStatus';

@@ -1,4 +1,4 @@
-import { ArtistProps } from '@/@types/artist';
+import { ArtistProps } from '@/@Entities/artist';
 
 export const artists: ArtistProps[] = [
   {

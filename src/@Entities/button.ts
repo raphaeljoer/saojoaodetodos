@@ -1,7 +1,7 @@
 import { ButtonProps } from '@chakra-ui/react';
-import { Urlobject } from 'url';
+import { UrlObject } from 'url';
 
-type Url = string | Urlobject;
+type Url = string | UrlObject;
 
 export interface IButtonProps extends ButtonProps {
   label: string;

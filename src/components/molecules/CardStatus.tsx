@@ -14,7 +14,7 @@ import Status from './Status';
 //resources
 import React from 'react';
 //types
-import { ResultProps } from '@/@types/result';
+import { ResultProps } from '@/@Entities/result';
 
 interface CardStatusProps extends FlexProps {
   value: ResultProps;

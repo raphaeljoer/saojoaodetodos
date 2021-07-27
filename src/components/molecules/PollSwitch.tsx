@@ -7,41 +7,32 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { isBetween } from '@/utils/date';
 //data
 import artists from '@/data/static/artists';
-//config
-import { checkTime, date } from '@/config/poll';
 //types
-import { ResultProps } from '@/@types/result';
+import { IDisplayPoll, IPollConfig, IPollStatus } from '@/@Entities/poll';
 
-type IStatus = 'open' | 'closed' | 'winner';
-type IDisplay = { [key in IStatus]: JSX.Element };
-type PollSwitchProps = { results: ResultProps[] };
+type PollSwitchProps = { config: IPollConfig };
 
-export const PollSwitch = ({
-  results,
-}: PollSwitchProps): JSX.Element | null => {
-  const [status, setStatus] = useState<IStatus | null>(null);
+export const PollSwitch = ({ config }: PollSwitchProps): JSX.Element | null => {
+  const { date, checkTime, results, status } = config;
+  const [state, setState] = useState<IPollStatus | null>(null);
 
-  const updateStatus = useCallback(() => {
-    new Map<IStatus, boolean>([
-      ['open', isBetween(date.open.start, date.open.end)],
-      ['closed', isBetween(date.closed.start, date.closed.end)],
-      ['winner', isBetween(date.winner.start, date.winner.end)],
-    ]).forEach((v, k) => v && setStatus(k));
-  }, []);
+  const updateState = useCallback(() => {
+    status.forEach((s) => isBetween(date[s].start, date[s].end) && setState(s));
+  }, [status]);
 
-  const display: IDisplay = {
+  const displayPoll: IDisplayPoll = {
     open: <Poll artists={artists} results={results} />,
     closed: <Closed />,
     winner: <Winner results={results} />,
   };
 
   useEffect(() => {
-    updateStatus();
-    const checkStatus = setInterval(updateStatus, checkTime);
+    updateState();
+    const checkStatus = setInterval(updateState, checkTime);
     return () => clearInterval(checkStatus);
-  }, [updateStatus]);
+  }, [updateState]);
 
-  return status ? display[status] : null;
+  return state && displayPoll[state];
 };
 
 export default PollSwitch;

@@ -8,7 +8,7 @@ import { date } from '@/config/poll';
 import * as Recaptcha from '@/config/services/recaptcha/v3';
 import * as Mongo from '@/config/database/mongo';
 //types
-import * as RecaptchaProps from '@/@types/recaptcha';
+import * as RecaptchaProps from '@/@Entities/recaptcha';
 import { timeout } from '@/config/app';
 
 interface BodyRequest {

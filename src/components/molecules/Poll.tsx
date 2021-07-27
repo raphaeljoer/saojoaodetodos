@@ -20,8 +20,8 @@ import axios from 'axios';
 import { timeout } from '@/config/app';
 import * as Recaptcha from '@/config/services/recaptcha/v3';
 //types
-import { ArtistProps } from '@/@types/artist';
-import { ResultProps } from '@/@types/result';
+import { ArtistProps } from '@/@Entities/artist';
+import { ResultProps } from '@/@Entities/result';
 
 const gridProps: GridProps = {
   templateColumns: {

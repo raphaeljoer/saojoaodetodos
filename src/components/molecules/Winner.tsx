@@ -5,7 +5,7 @@ import React from 'react';
 //core-components
 import Card from './Card/Card';
 //types
-import { ResultProps } from '@/@types/result';
+import { ResultProps } from '@/@Entities/result';
 import * as Format from '@/utils/format/number';
 
 interface WinnerProps {

@@ -1,6 +1,6 @@
 import { Flex, FlexProps } from '@chakra-ui/react';
 import React from 'react';
-import { ResultProps } from '@/@types/result';
+import { ResultProps } from '@/@Entities/result';
 import CardStatus from './CardStatus';
 
 interface CardResult extends FlexProps {

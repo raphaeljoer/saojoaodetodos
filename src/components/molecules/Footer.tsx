@@ -10,7 +10,7 @@ import { zIndex } from '@/config/app';
 //data
 import { partners, sponsors } from '@/data/static/brands';
 //types
-import { BrandProps } from '@/@types/brand';
+import { BrandProps } from '@/@Entities/brand';
 
 const getBrands = (brands: BrandProps[]) =>
   brands.map((b) => (

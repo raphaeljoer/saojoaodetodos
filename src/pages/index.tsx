@@ -12,7 +12,8 @@ import SEO from '@/config/seo';
 //data
 import { getResults } from '@/data/request/results';
 //types
-import { ResultProps } from '@/@types/result';
+import { ResultProps } from '@/@Entities/result';
+import { checkTime, date, status } from '@/config/poll';
 
 interface HomePageProps {
   results: ResultProps[];
@@ -23,7 +24,7 @@ export default function HomePage({ results }: HomePageProps) {
     <Layout>
       <NextSeo {...SEO.page.home} />
       <Container mt={16} mb={24}>
-        <PollSwitch results={results} />
+        <PollSwitch config={{ date, checkTime, status, results }} />
       </Container>
     </Layout>
   );

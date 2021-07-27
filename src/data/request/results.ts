@@ -3,8 +3,8 @@ import * as Mongo from '@/config/database/mongo';
 //data
 import artists from '@/data/static/artists';
 //types
-import { ResultProps } from '@/@types/result';
-import { ArtistProps } from '@/@types/artist';
+import { ResultProps } from '@/@Entities/result';
+import { ArtistProps } from '@/@Entities/artist';
 
 type Votes = Pick<ResultProps, 'votes'>;
 type PartialResult = Omit<ResultProps, 'progress' | 'position'>;

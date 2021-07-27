@@ -11,7 +11,7 @@ import { NextSeo } from 'next-seo';
 import { GetStaticProps } from 'next';
 import { useRouter } from 'next/router';
 //types
-import { ResultProps } from '@/@types/result';
+import { ResultProps } from '@/@Entities/result';
 import { getResults } from '@/data/request/results';
 import { time } from '@/utils/time';
 
